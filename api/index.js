@@ -39,7 +39,7 @@ const auth = require('../authorization/auth')(router);
 
 router.post('/movies', (req, res) => {
   const { Title, Description, Trailer, Featured,ImagePath,
-            GName, GDesc,DName,Bio,DoB, PoB
+            GName, DName, Bio, DoB, PoB
         } = req.body;
 
   Movies.findOne({Title: Title})
@@ -55,7 +55,6 @@ router.post('/movies', (req, res) => {
         ImagePath: ImagePath,
         Genre: {
           Name: GName,
-          Description: GDesc
         },
         Director:{
           Name: DName,
