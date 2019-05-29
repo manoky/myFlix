@@ -34,14 +34,19 @@ app.use(require('webpack-dev-middleware')(compiler,{
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
-app.use(express.static(path.resolve(__dirname,'./client/dist')))
-
 
 /****************************
     Api calls
  ****************************/
 app.use('/api/v1', (req, res, next) => {
   (api)(req, res, next)
+})
+
+
+app.use(express.static(path.resolve(__dirname,'./client/dist')));
+
+app.get(['/','/movies/:id'],(req, res) => {
+  res.sendFile(path.resolve(__dirname,'./client/dist/index.html'))
 })
 
 const port =  process.env.PORT || 9000;

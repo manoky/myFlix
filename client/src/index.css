@@ -1,0 +1,16 @@
+body {
+  background:red;
+  padding: 0;
+  background-image: url('https://wallpapersite.com/images/pages/pic_w/17907.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#app {
+
+  
+  height: 100%;
+  width: 100%;
+}

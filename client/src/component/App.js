@@ -1,8 +1,9 @@
 import React from 'react';
 import MainView from './main-view/MainView';
+import './App.scss';
 
 const App =()=> (
-  <div>
+  <div className="App">
     <MainView />
   </div>
 );

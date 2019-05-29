@@ -29,9 +29,9 @@ const auth = require('../authorization/auth')(router);
    .catch(err => res.status(500).send(`Error: ${err}`))
  });
 
- router.get('/movies/:title', (req, res) => {
-   const title = req.params.title;
-   Movies.findOne({Title: title})
+ router.get('/movies/:id', (req, res) => {
+   const id = req.params.id;
+   Movies.findOne({_id: mongoose.Types.ObjectId(id)})
    .then(movie => res.json(movie))
    .catch(err => res.status(500).send(`Error: ${err}`))
  });
