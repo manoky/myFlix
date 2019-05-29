@@ -2,6 +2,8 @@
   width: 90%;
   margin: auto;
   margin-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   .Inner-Card {
     width: 100%;
@@ -12,23 +14,21 @@
   
 
   .movie-image {
-    width: 300px;
    
-    
     box-shadow: 4px 4px 5px rgba(54, 54, 54, 0.171);
     img {
-      width: 250px;
-      height: 350px;
+      width: 207px;
     }
   }
 
   .movie-details {
+    padding: 20px;
+    background: #fff;
+    box-shadow: 4px 4px 5px rgba(54, 54, 54, 0.171);
+    
     h1 {
       text-align: center;
     }
 
-    padding: 20px;
-    background: #fff;
-    box-shadow: 4px 4px 5px rgba(54, 54, 54, 0.171);
   }
 }

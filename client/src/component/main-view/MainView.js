@@ -51,6 +51,7 @@ class MainView extends Component {
     return (
       <BrowserRouter>
         <main className="MainView">
+          <h1 className="sidebar">Side Bar Here</h1>
           <Switch>
             <Route exact path='/' render={() => 
               <MovieCard

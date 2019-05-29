@@ -2,7 +2,16 @@
   width: 100%;
   max-width: 1100px;
   margin: auto;
-  background:#fff;
-  height: 100%;
+  height: auto;
   background: #eee;
+  padding-bottom: 40px;
+  padding-top: 60px;
+  display: flex;
+  justify-content: space-between;
+
+  h1.sidebar{
+    background: #fff;
+    margin: 0;
+    width: 30%;
+  }
 }

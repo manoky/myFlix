@@ -1,16 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background:red;
   padding: 0;
-  background-image: url('https://wallpapersite.com/images/pages/pic_w/17907.jpg');
+  /* background-image: url('http://flash.gtarcade.net/31/static/usr/uploads/201901/20190109080139_30824/images/poster.jpg'); */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Arimo', sans-serif;
+  font-size: 14px;
+  color: rgba(0,0,0,.54);
 }
 
-#app {
+h1 {
+  color: rgba(0, 0, 0, 0.637);
+  font-size: 20px;
+}
 
-  
+a {
+  text-decoration: none;
+}
+
+
+#app {
+  position: absolute;
+  bottom: 0;
   height: 100%;
   width: 100%;
+}
+
+.bg-video {
+  position: fixed;
+  right: 0;
+  top:0px;
+  bottom: 0;
+  z-index: -1;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.heart {
+  font-size: 25px;
+  color: red;
+  padding: 0px 4px;
+  background: #eee;
+  cursor: pointer;
 }

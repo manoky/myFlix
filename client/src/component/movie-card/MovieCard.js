@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import './MovieCard.scss';
 
-const MovieCard = ({movies, getMovie}) => {
+const MovieCard = ({movies}) => {
   return(
     <div className="MovieCard">
       { 
@@ -10,7 +10,6 @@ const MovieCard = ({movies, getMovie}) => {
           <Card 
             key={movie._id}
             movie={movie}
-            getMovie={getMovie}
           />
         ))
       }

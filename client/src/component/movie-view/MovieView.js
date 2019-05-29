@@ -1,12 +1,16 @@
 import React,{ Component } from 'react';
 import axios from 'axios';
+import Card from '../movie-card/Card';
 import './MovieView.scss'
 
 class MovieView extends Component {
   state= {
     movie: null,
+    favorited: false,
   }
 
+  isMovieView = true;
+  
   componentDidMount() {
     const {id} = this.props.match.params;
     this.onGetMovie(id);
@@ -21,28 +25,24 @@ class MovieView extends Component {
     .catch(err => console.log(err));
   }
 
+  onFavorite = () => {
+    console.log('Clicked')
+    this.setState({favorited:!this.state.favorited})
+  }
+
   render() {
-    const {movie} = this.state;
+    const {movie, favorited} = this.state;
     return (
-      <div>
+      <div className="MovieView">
         { movie !== null ?
-          <div className="MovieView">
-            <div className="Inner-Card">
-              <div className="movie-image">
-                <img src={movie.ImagePath} alt={movie.Title}/>
-              </div>
-              <div className="movie-details">
-                <div><h1>{movie.Title}</h1></div>
-                <div>{movie.Genre.Name}</div>
-                <div>{movie.Director.Name}</div>
-                <div>{movie.Description}</div>
-                <hr />
-              </div>
-            </div>
-            <embed width="100%" height="450" src={movie.Trailer} />
-          </div>
+            <Card movie={movie} 
+              isMovieView={this.isMovieView}
+              favorite={this.onFavorite}
+              isFavorite={favorited}
+             />
           : null
         }
+        <h1>Comments Placeholder</h1>
       </div>
     )
   }
