@@ -8,7 +8,7 @@
     "start": "npx babel-node server.js",
     "postinstall": "npm run build",
     "dev": "nodemon --exec npx babel-node dev-server.js",
-    "build": "webpack --progress --color -w"
+    "build": "webpack --progress --color"
   },
   "keywords": [],
   "author": "",
