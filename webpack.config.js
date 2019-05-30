@@ -47,6 +47,6 @@ module.exports = {
     new HtmlWebpackplugin({
       template: './client/src/index.html',
       inject: 'body',
-    })
+    }),
   ]
 };

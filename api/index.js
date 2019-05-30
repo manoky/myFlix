@@ -5,10 +5,11 @@ import passport from 'passport';
 import Users from '../models/User';
 import Comments from '../models/Comment';
 import Movies from '../models/Movie';
+require('dotenv').config();
 
+const dbURL = process.env.MONGO_URL;
 
-
-mongoose.connect('mongodb://localhost:27017/movieApi',{useNewUrlParser: true,
+mongoose.connect(dbURL,{useNewUrlParser: true,
  useCreateIndex: true,
  useFindAndModify: false
 })

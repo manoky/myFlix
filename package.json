@@ -19,6 +19,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "css-loader": "^2.1.1",
+    "dotenv": "^8.0.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.17.0",
     "express-validator": "^5.3.1",
