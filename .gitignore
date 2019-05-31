@@ -3,3 +3,4 @@ dist
 users.json
 movies.json
 .env
+client

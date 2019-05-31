@@ -74,7 +74,6 @@ router.post('/movies', (req, res) => {
 
 router.delete('/movies/:id', (req, res) => {
   const {id} = req.params;
-  console.log(id)
 
   Movies.findOneAndRemove({_id: mongoose.Types.ObjectId(id)})
   .then(movie => {
@@ -126,7 +125,6 @@ router.post('/users', (req, res) => {
   const hashPassword = Users.hashPassword(password);
   Users.findOne({Username: username})
   .then(user => {
-    console.log(user)
     if(user) {
       res.status(400).send(`${username} already exist`)
     }
@@ -143,7 +141,6 @@ router.post('/users', (req, res) => {
             Email: email
           })
           .then((user) => {
-            console.log(user)
             res.status(201).json(user)
           })
           .catch(err => res.status(500).send(`Error: ${err}`))
@@ -172,7 +169,6 @@ router.put('/users/:username', (req, res) => {
       console.log(err);
       res.status(500).send('Error:',err)
     }else {
-      console.log(updatedUser);
       res.json(updatedUser);
     }
   });    
