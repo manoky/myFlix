@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken';
-import passport from 'passport';
-import './passport';
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+require('./passport');
 
 const jwtSecret = 'your_jwt_secret';
 

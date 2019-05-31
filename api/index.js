@@ -1,10 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import {ObjectID} from 'mongoose';
-import passport from 'passport';
-import Users from '../models/User';
-import Comments from '../models/Comment';
-import Movies from '../models/Movie';
+const express = require('express');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const Users = require('../models/User');
+const Comments = require('../models/Comment');
+const Movies = require('../models/Movie');
 require('dotenv').config();
 
 const dbURL = process.env.MONGO_URL;
@@ -221,5 +220,5 @@ router.get('/genres/:name', (req, res) => {
  
 
 
-export default router;
+module.exports = router;
 

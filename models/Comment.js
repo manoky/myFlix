@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
   user_id: { type:mongoose.Schema.Types.ObjectId, ref:'User'},
