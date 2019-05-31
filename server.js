@@ -45,7 +45,7 @@ app.use('/api/v1', (req, res, next) => {
 
 app.use(express.static(path.resolve(__dirname,'./client/dist')));
 
-app.get(['/','/movies/:id'],(req, res) => {
+app.get('*',(req, res) => {
   res.sendFile(path.resolve(__dirname,'./client/dist/index.html'))
 })
 

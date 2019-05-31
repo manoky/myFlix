@@ -53,6 +53,7 @@ class MainView extends Component {
         <main className="MainView">
           <h1 className="sidebar">Side Bar Here</h1>
           <Switch>
+            <Redirect from="/home" to="/" />
             <Route exact path='/' render={() => 
               <MovieCard
                 movies={movies}
