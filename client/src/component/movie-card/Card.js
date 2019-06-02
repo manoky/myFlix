@@ -1,12 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import ReactStars from 'react-stars';
 import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
 
-const Card = ({movie, isMovieView, favorite, isFavorite, getMovie}) => {
+const Card = ({movie, isMovieView, favorite, isFavorite, rating}) => {
   const {_id,Title,Genre,Director,Trailer, ImagePath,Description} = movie
   // console.log('%c MovieList','color:blue; font-size:16px; font-weight:bold');
   // console.log('movie',movie)
-  console.log(isFavorite,'Cards face')
+
   return(
     <div className="Card">
       {isMovieView ? <embed width="100%" height="450" src={movie.Trailer} />: null}
@@ -22,7 +23,15 @@ const Card = ({movie, isMovieView, favorite, isFavorite, getMovie}) => {
           </div>
           <div>{Description}</div>
           <div>
-            <span>Rating: Great</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>
+              <ReactStars 
+                count={5}
+                size={20}
+                color2={'#ffd700'}
+                edit={false}
+                value={parseFloat(rating)}
+              />
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span className="heart hint--top" onClick={favorite}>
                 {isFavorite ? 
                   <span className="heart hint--top" aria-label="Remove to favorites">

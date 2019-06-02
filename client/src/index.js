@@ -22,3 +22,9 @@ document.querySelector('#app').appendChild(video);
   poster="nice-default.jpg
   autoplay
 /> */}
+
+window.React1 = require('react');
+require('react-dom');
+window.React2 = require('react');
+console.log('%c React','color:blue; font-size:16px; font-weight:bold');
+console.log(window.React1 === window.React2);

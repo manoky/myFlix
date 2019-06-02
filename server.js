@@ -2,15 +2,31 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const validator = require('express-validator');
 const morgan = require('morgan');
-//const webpack = require('webpack');
 const path = require('path');
 const cors = require('cors');
 const api = require('./api');
-//const config = require('./webpack.config');
+
 
 const allowedOrigins = ['*']
-//const compiler = webpack(config);
 const app = express();
+
+const isDev = process.env.NODE_ENV 
+
+
+if(isDev==='development') {
+  const webpack = require('webpack');
+  const config = require('./webpack.config');
+  const compiler = webpack(config);
+
+
+  app.use(require('webpack-dev-middleware')(compiler,{
+    noInfo: true,
+    publicPath: config.output.publicPath
+  }));
+  app.use(require('webpack-hot-middleware')(compiler));
+
+}
+
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
@@ -25,15 +41,10 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+
 //const auth = require('./authorization/auth')(app)
 
 
-// app.use(require('webpack-dev-middleware')(compiler,{
-//   noInfo: true,
-//   publicPath: config.output.publicPath
-// }));
-
-// app.use(require('webpack-hot-middleware')(compiler));
 
 /****************************
     Api calls

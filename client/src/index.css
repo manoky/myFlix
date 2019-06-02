@@ -46,7 +46,13 @@ a {
 .heart {
   font-size: 25px;
   color: red;
-  padding: 0px 4px;
-  background: #eee;
+  /* background: rgb(219, 219, 219); */
+  border-radius: 50%;
   cursor: pointer;
+}
+
+.avatar {
+  font-size: 25px;
+  color: red;
+  fill: red;
 }

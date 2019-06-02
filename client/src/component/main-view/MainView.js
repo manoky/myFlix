@@ -4,11 +4,14 @@ import { Route, BrowserRouter, Switch,Redirect} from 'react-router-dom';
 import MovieCard from '../movie-card/MovieCard';
 import MovieView from '../movie-view/MovieView';
 import './MainView.scss'
+import Header from '../UI/Header';
+import Footer from '../UI/Footer';
+import Login from '../login/Login';
+import Registration from '../registration/Registration';
 
 class MainView extends Component {
   state = {
     movies:[],
-    selectedMovie: null,
     user: null,
     loading: true
   }
@@ -46,24 +49,28 @@ class MainView extends Component {
 
   render() {
     const {movies, selectedMovie} = this.state;
-    console.log('%c Movie','color:blue; font-size:16px; font-weight:bold');
-    console.log(movies,'Selected: ', selectedMovie)
+    //console.log('%c Movie','color:blue; font-size:16px; font-weight:bold');
+    //console.log(movies,'Selected: ', selectedMovie)
     return (
       <BrowserRouter>
         <main className="MainView">
-          <h1 className="sidebar">Side Bar Here</h1>
+          <Header />
+          <div className="MainView-Inner">
           <Switch>
             <Redirect from="/home" to="/" />
             <Route exact path='/' render={() => 
               <MovieCard
                 movies={movies}
-                getMovie={this.onGetMovie} 
               />}
             />
             <Route exact path='/movies/:id' 
               component={MovieView}
             />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Registration} />
           </Switch>
+          </div>
+          <Footer />
         </main>
       </BrowserRouter>
     )

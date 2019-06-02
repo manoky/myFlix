@@ -2,11 +2,16 @@ import React,{ Component } from 'react';
 import axios from 'axios';
 import Card from '../movie-card/Card';
 import './MovieView.scss'
+import Comments from '../comments/Comments';
+import Sidebar from '../UI/sidebar/Sidebar';
+
 
 class MovieView extends Component {
   state= {
     movie: null,
     favorited: false,
+    comments: [],
+    rating: null,
   }
 
   isMovieView = true;
@@ -14,6 +19,7 @@ class MovieView extends Component {
   componentDidMount() {
     const {id} = this.props.match.params;
     this.onGetMovie(id);
+    this.onGetComments(id);
   }
 
   onGetMovie = (id) => {
@@ -25,24 +31,50 @@ class MovieView extends Component {
     .catch(err => console.log(err));
   }
 
+  onGetComments =(id)=> {
+    axios.get(`/api/v1/comments/${id}`)
+    .then(res => {
+      const comments =res.data
+      this.setState({comments})
+    })
+    .catch(err => console.log(err))
+  }
+
   onFavorite = () => {
     console.log('Clicked')
     this.setState({favorited:!this.state.favorited})
   }
 
   render() {
-    const {movie, favorited} = this.state;
+    const {movie, favorited, comments} = this.state;
+    console.log('%c Sum','color:blue; font-size:16px; font-weight:bold');
+    //Calculate average rating of each movie
+    let sum = [];
+    for(let i = 0; i < comments.length; i++) {
+      sum.push(comments[i].rating);
+    }
+
+    const rating = sum.reduce((all, num) => {
+      return all + parseFloat(num);
+    },0) / sum.length;
+
+      console.log(rating)
+    //console.log(average);
     return (
       <div className="MovieView">
+        <Sidebar />
+        <div className='Inner-View'>
         { movie !== null ?
             <Card movie={movie} 
               isMovieView={this.isMovieView}
               favorite={this.onFavorite}
               isFavorite={favorited}
+              rating={rating}
              />
           : null
         }
-        <h1>Comments Placeholder</h1>
+        <Comments comments={comments}/>
+        </div>
       </div>
     )
   }

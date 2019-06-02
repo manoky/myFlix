@@ -86,7 +86,7 @@ router.delete('/movies/:id', (req, res) => {
     Users requests
  ****************************/
 
-router.get('/users',passport.authenticate('jwt',{session: false}), (req, res) => {
+router.get('/users',/*passport.authenticate('jwt',{session: false}),*/ (req, res) => {
   Users.find()
   .then(users => res.json(users))
   .catch(err => res.status(500).send(`Error: ${err}`))
@@ -205,15 +205,62 @@ router.get('/genres/:name', (req, res) => {
   Directors requests
 ****************************/
 
-  router.get('/directors/:name', (req, res) => {
-    const name = req.params.name;
-    Movies.find({"Director.Name": name})
-    .then(movies => {
-      res.json(movies)
-    })
-    .catch(err => res.status(500).send(`Error: ${err}`))
-  });
- 
+router.get('/directors/:name', (req, res) => {
+  const name = req.params.name;
+  Movies.find({"Director.Name": name})
+  .then(movies => {
+    res.json(movies)
+  })
+  .catch(err => res.status(500).send(`Error: ${err}`))
+});
+
+/****************************
+  Comment requests
+****************************/
+
+router.get('/comments', (req, res) => {
+  Comments.find()
+  .then(comments => {
+    res.json(comments)
+  })
+  .catch(err => res.status(500).send(`Error: ${err}`))
+});
+
+router.get('/comments/:id', (req, res) => {
+  const {id} = req.params;
+  Comments.find()
+  .where('movie_id').equals(id)
+  .then(comments => {
+    res.json(comments)
+  })
+  .catch(err => res.status(500).send(`Error: ${err}`))
+})
+
+
+router.post('/comments', (req, res) => {
+  const {comment, userId, movieId, rating} = req.body;
+
+  req.checkBody('comment',' comment is required').notEmpty();
+  req.checkBody('rating','rating is required').isNumeric();
+
+  const errors = req.validationErrors();
+
+  if(errors) {
+    res.status(422).json(errors);
+  }
+  Comments.create({
+    user_id: userId,
+    movie_id: movieId,
+    rating: rating,
+    comment_body: comment
+  })
+  .then(comment => {
+    res.json(comment);
+  })
+  .catch(err => res.status(500).send(`Error: ${err}`))
+})
+
+
 
 
 module.exports = router;

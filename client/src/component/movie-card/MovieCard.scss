@@ -1,9 +1,22 @@
 .MovieCard {
-  width: 90%;
+  width: 100%;
   margin: auto;
   margin-bottom: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
+
+
+  // .sidebar{
+  //   background: #fff;
+  //   margin: 0;
+  //   width: 40%;
+  // }
+
+
+  .Movie-List {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   .Inner-Card {
     width: 100%;

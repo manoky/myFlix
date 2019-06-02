@@ -2,11 +2,18 @@
   width: 100%;
   margin: auto;
   margin-bottom: 60px;
-  
+  display: flex;
+  justify-content: space-around;
   height: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
+ 
   
+  //separates the sidebar from the card component flex
+  .Inner-View {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  //floating the content of the card component
   .Inner-Card {
     width: 100%;
     display: flex;
