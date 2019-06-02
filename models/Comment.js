@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
   user_id: { type:mongoose.Schema.Types.ObjectId, ref:'User'},
+  username: {type:String, required: true, ref: 'User'},
   movie_id:{ type: mongoose.Schema.Types.ObjectId, ref:'Movie'},
   rating: { type: Number, required: true},
   comment_body: {

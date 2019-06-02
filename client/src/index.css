@@ -34,7 +34,6 @@ a {
 }
 
 .bg-video {
-  position: fixed;
   right: 0;
   top:0px;
   bottom: 0;
@@ -51,8 +50,3 @@ a {
   cursor: pointer;
 }
 
-.avatar {
-  font-size: 25px;
-  color: red;
-  fill: red;
-}
