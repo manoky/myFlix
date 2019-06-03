@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
@@ -10,16 +11,25 @@ import './Login.scss';
 import FormWrap from '../UI/wrapper/FormWrapper';
 
 
-function Login(){
+function Login({logUser, history}){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onSubmitted = (e) => {
     e.preventDefault();
-    console.log(email, password)
-    setEmail('');
-    setPassword('');
+    //console.log(email, password)
+    axios.post('/api/v1/login',{
+      Email: email,
+      Password: password
+    })
+    .then(res => {
+      console.log(res.data)
+      logUser(res.data)
+      history.push('/');
+    })
+    .catch(err => console.log(err));
   }
+
 
   return (
     <div className="Login-Form">
@@ -28,8 +38,8 @@ function Login(){
           <form onSubmit={onSubmitted}>
             <div className="Login-Email">
               <FormControl fullWidth={true}>
-                <InputLabel htmlFor="my-input">Email address</InputLabel>
-                <Input id="my-input"
+                <InputLabel htmlFor="email">Email address</InputLabel>
+                <Input id="email"
                   aria-describedby="my-helper-text"
                   type="email" 
                   onChange={e => setEmail(e.target.value)}

@@ -238,7 +238,7 @@ router.get('/comments/:id', (req, res) => {
 
 
 router.post('/comments', (req, res) => {
-  const {comment, userId, movieId, rating} = req.body;
+  const {comment, userId, movieId, rating, username} = req.body;
 
   req.checkBody('comment',' comment is required').notEmpty();
   req.checkBody('rating','rating is required').isNumeric();
@@ -250,6 +250,7 @@ router.post('/comments', (req, res) => {
   }
   Comments.create({
     user_id: userId,
+    username: username,
     movie_id: movieId,
     rating: rating,
     comment_body: comment

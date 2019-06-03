@@ -21,11 +21,17 @@ class MainView extends Component {
   componentDidMount() {
     this.isMouted = true;
     this.getMovies()
+    let user = localStorage.getItem('user');
+    if(user) {
+      let parsedUser = JSON.parse(user)
+      this.setState({user: parsedUser})
+    }
+    console.log(user)
+    
   }
 
   componentWillUnmount(){
     this.isMouted = false;
-   
   }
 
   getMovies = () => {
@@ -40,17 +46,17 @@ class MainView extends Component {
   }
 
 
-  logUserIn =(info)=> {
-    this.setState({user:info.Username});
-    localStorage.setItem('user',info.Username);
-    localStorage.setItem('token',info.token);
+  logUser = (user) => {
+    this.setState({user: user});
+    localStorage.setItem('user',JSON.stringify(user));
   }
 
 
   render() {
-    const {movies, selectedMovie} = this.state;
-    //console.log('%c Movie','color:blue; font-size:16px; font-weight:bold');
-    //console.log(movies,'Selected: ', selectedMovie)
+    const {movies, user} = this.state;
+    const {history} = this.props;
+    console.log('%c User','color:blue; font-size:16px; font-weight:bold');
+    console.log(user, 'History',history);
     return (
       <BrowserRouter>
         <main className="MainView">
@@ -64,9 +70,24 @@ class MainView extends Component {
               />}
             />
             <Route exact path='/movies/:id' 
-              component={MovieView}
+              render={({match}) => <MovieView match={match} user={user} />}
             />
-            <Route path='/login' component={Login} />
+            <Route path='/login' render={({history}) => 
+              { 
+                console.log('%c Inner User','color:blue; font-size:16px; font-weight:bold');console.log(user);
+                if(user !== null) {
+                  history.push('/')
+                  return <MovieCard movies={movies}/>  
+                }else {
+                  return  <Login 
+                            logUser={this.logUser}
+                            history={history} 
+                            user={user}
+                          />
+                }
+                 
+              }} 
+            />
             <Route path='/signup' component={Registration} />
           </Switch>
           </div>

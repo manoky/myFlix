@@ -7,7 +7,7 @@ const cors = require('cors');
 const api = require('./api');
 
 
-const allowedOrigins = ['*']
+const allowedOrigins = '*';
 const app = express();
 
 const isDev = process.env.NODE_ENV 
@@ -31,16 +31,18 @@ if(isDev==='development') {
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(validator());
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin )=== -1) {
-      const message = `The CORS policy for this application doesn't allow access from ${origin}`
-      return callback(new Error(message), false);
-    }
-    return callback(null, true);
-  }
-}));
+app.use(cors());
+app.options('*', cors());
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if(!origin) return callback(null, true);
+//     if(allowedOrigins.indexOf(origin )=== -1) {
+//       const message = `The CORS policy for this application doesn't allow access from ${origin}`
+//       return callback(new Error(message), false);
+//     }
+//     return callback(null, true);
+//   }
+// }));
 
 //const auth = require('./authorization/auth')(app)
 

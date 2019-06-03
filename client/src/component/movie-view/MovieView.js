@@ -7,14 +7,13 @@ import Sidebar from '../UI/sidebar/Sidebar';
 
 
 class MovieView extends Component {
-  state= {
+  state = {
     movie: null,
     favorited: false,
     comments: [],
     rating: null,
   }
-
-  isMovieView = true;
+  
   
   componentDidMount() {
     const {id} = this.props.match.params;
@@ -45,10 +44,36 @@ class MovieView extends Component {
     this.setState({favorited:!this.state.favorited})
   }
 
+  onComment = (
+                userId,
+                username,
+                movie_id, 
+                rating,
+                comment_body
+               ) =>{
+    axios.post('/api/v1/comments',{
+      userId: userId,
+      username: username,
+      movieId: movie_id,
+      rating: rating,
+      comment: comment_body
+    })
+    .then(res => {
+      this.setState(prevState =>({
+        comments: [...prevState.comments, res.data]
+      }))
+      console.log(res.data)
+    })
+    .catch(err => console.log(err))
+    
+  }
+
   render() {
     const {movie, favorited, comments} = this.state;
+    const {user} = this.props;
     console.log('%c Sum','color:blue; font-size:16px; font-weight:bold');
     //Calculate average rating of each movie
+    console.log(user)
     let sum = [];
     for(let i = 0; i < comments.length; i++) {
       sum.push(comments[i].rating);
@@ -58,7 +83,6 @@ class MovieView extends Component {
       return all + parseFloat(num);
     },0) / sum.length;
 
-      console.log(rating)
     //console.log(average);
     return (
       <div className="MovieView">
@@ -73,7 +97,17 @@ class MovieView extends Component {
              />
           : null
         }
-        <Comments comments={comments}/>
+        {
+          user !== null && movie !==null ? 
+          <Comments 
+            comments={comments} 
+            user={user} 
+            movieId={movie._id}
+            sendComment={this.onComment}
+          /> :
+          null
+        }
+        
         </div>
       </div>
     )
