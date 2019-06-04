@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import { Route, BrowserRouter, Switch,Redirect} from 'react-router-dom';
 import MovieCard from '../movie-card/MovieCard';
@@ -21,30 +20,9 @@ class MainView extends Component {
     this.props.getFavorite(id)    
   }
 
-  componentWillUnmount(){
-    this.isMouted = false;
-  }
-
-  // getMovies = () => {
-  //   axios.get('/api/v1/movies')
-  //   .then(resp => {
-  //     const movies = resp.data
-  //     if(this.isMouted) {
-  //       this.setState({movies})
-  //     }
-  //   })
-  //   .catch(err => console.log(err))
-  // }
-
-
-  // logUser = (user) => {
-  //   //this.setState({user: user});
-  //   localStorage.setItem('user',JSON.stringify(user));
-  // }
-
 
   render() {
-    //const {} = this.state;
+
     const {movies, user} = this.props;
     // console.log('%c User','color:blue; font-size:16px; font-weight:bold');
      //console.log(this.props);

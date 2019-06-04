@@ -1,0 +1,36 @@
+.Registration-Form {
+  position: relative;
+  margin: auto;
+  height: auto;
+
+  .Inner-Login-Form {
+    margin: auto;
+    padding: 60px;
+  }
+
+  video {
+    width: 100%;
+    margin: auto;
+    z-index: 1;
+    height: auto;
+    bottom: 0;
+  }
+
+  form {
+    z-index: 23;
+    position: relative;
+    top: -390px;
+    width: 30%;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+  }
+  
+  .Registration-Email {
+    margin-bottom: 10px;
+  }
+
+  .Registration-Password {
+    margin-bottom: 20px;
+  }
+}

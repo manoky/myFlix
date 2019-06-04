@@ -1,0 +1,23 @@
+.CommentForm {
+  width: 90%;
+  margin: auto;
+  padding: 20px 0 20px 0;
+  
+  margin-bottom: 80px;
+
+  button {
+    margin-top: 10px;
+  }
+  .form-stars {
+    margin-bottom: 10px;
+  }
+
+  .form-body {
+    width: 80%;
+    textarea {
+      width: 80%;
+      min-height: 120px;
+    }
+  }
+  
+}
