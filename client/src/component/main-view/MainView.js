@@ -10,24 +10,15 @@ import Footer from '../UI/Footer';
 import Login from '../login/Login';
 import Registration from '../registration/Registration';
 import fetchMovies from '../../actions/fetchMovies';
+import { getFavorite } from '../../actions/favorite';
 
 class MainView extends Component {
-  state = {
-    user: null,
-    loading: true
-  }
-
-  isMouted = false;
+ 
 
   componentDidMount() {
-    this.isMouted = true;
-    //this.getMovies()
-    // let user = localStorage.getItem('user');
-    // if(user) {
-    //   let parsedUser = JSON.parse(user)
-    //   //this.setState({user: parsedUser})
-    // }
-    this.props.fetchMovies();    
+    const id = this.props.user.user._id
+    this.props.fetchMovies();
+    this.props.getFavorite(id)    
   }
 
   componentWillUnmount(){
@@ -56,7 +47,7 @@ class MainView extends Component {
     //const {} = this.state;
     const {movies, user} = this.props;
     // console.log('%c User','color:blue; font-size:16px; font-weight:bold');
-     console.log(this.props);
+     //console.log(this.props);
     return (
       <BrowserRouter>
         <main className="MainView">
@@ -74,7 +65,6 @@ class MainView extends Component {
             />
             <Route path='/login' render={({history}) => 
               { 
-                console.log('%c Inner User','color:blue; font-size:16px; font-weight:bold');console.log(user);
                 if(user !== null) {
                   history.push('/')
                   return <MovieCard movies={movies}/>  
@@ -98,4 +88,5 @@ class MainView extends Component {
   }
 }
 
-export default connect(({movies, user}) => ({movies, user}),{fetchMovies})(MainView);
+export default connect(({movies, user}) => ({movies, user}),
+                      {fetchMovies, getFavorite})(MainView);

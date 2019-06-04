@@ -41,11 +41,6 @@ class MovieView extends Component {
     .catch(err => console.log(err))
   }
 
-  onFavorite = () => {
-    console.log('Clicked')
-    this.setState({favorited:!this.state.favorited})
-  }
-
   onComment = (
                 userId,
                 username,
@@ -71,11 +66,11 @@ class MovieView extends Component {
   }
 
   render() {
-    const { movie, favorited, comments} = this.state;
+    const { movie, comments} = this.state;
     const {user} = this.props;
-    console.log('%c Sum','color:blue; font-size:16px; font-weight:bold');
+    //console.log('%c Sum','color:blue; font-size:16px; font-weight:bold');
     //Calculate average rating of each movie
-    console.log(movie)
+    
     let sum = [];
     for(let i = 0; i < comments.length; i++) {
       sum.push(comments[i].rating);
@@ -93,8 +88,6 @@ class MovieView extends Component {
         { movie !== null ?
             <Card movie={movie} 
               isMovieView={this.isMovieView}
-              favorite={this.onFavorite}
-              isFavorite={favorited}
               rating={rating}
             />
           : null

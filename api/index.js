@@ -191,9 +191,16 @@ router.delete('/users/:username', (req, res) => {
     Favorites requests
  ****************************/
 
-router.get('/users/:username/favorites', (req, res) => {
-  const username = req.params.username;
-  Users.findOne({Username: username})
+router.get('/users/:userId/favorites', (req, res) => {
+  const { userId } = req.params;
+  
+  Users.findOne({_id: mongoose.Types.ObjectId(userId)})
+    .then(user => {
+      console.log(user);
+      const favorite = user.FavoriteMovies;
+      res.json(favorite);
+    })
+    .catch(err => res.status(500).send(`Error: ${err}`));
 });
 
 //Add user favorite movie

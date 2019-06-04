@@ -1,20 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import ReactStars from 'react-stars';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
-import {onFavorite} from '../../actions/favorite';
+import {onFavorite, unfavorite} from '../../actions/favorite';
 
-const Card = ({movie, isMovieView, user, rating, onFavorite}) => {
+const Card = ({
+  movie, 
+  isMovieView, 
+  user, 
+  rating, 
+  onFavorite, 
+  favorites,
+  unfavorite
+  }) => {
+
+      
   const {_id,Title,Genre,Director, ImagePath,Description} = movie
 
-  const [isFavorite, setIsFavorite] = useState(false);
+  
+  let userId = null;
+  if(user) {
+    userId = user.user._id;
+  };
 
-  // const onFavorited = (id) => {
-  //   setIsFavorite(!isFavorite);
-  // }
-  console.log('Movie View',_id)
+  const toggleFavorite = (userId, movieId) => {
+    const found = favorites.includes(movieId);
+    if(userId !== null || userId !== undefined) {
+      if(found) {
+        unfavorite(userId, movieId)
+      }else {
+        onFavorite(userId, movieId)
+      }
+    }
+  }
 
   return(
     <div className="Card">
@@ -28,7 +48,7 @@ const Card = ({movie, isMovieView, user, rating, onFavorite}) => {
             {
               isMovieView ? <h1>{Title}</h1> 
               :
-              <Link to={`/movies/${_id}`} onClick={() => getMovie(`${_id}`)}>
+              <Link to={`/movies/${_id}`}>
                 <h1>{Title}</h1>
               </Link>
             }
@@ -45,8 +65,9 @@ const Card = ({movie, isMovieView, user, rating, onFavorite}) => {
                 value={parseFloat(rating)}
               />
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span className="heart hint--top" onClick={() => onFavorite(user._id,_id)}>
-                {isFavorite ? 
+            <span className="heart hint--top" onClick={() => toggleFavorite(userId, _id)}>
+                {
+                  favorites.includes(_id) ? 
                   <span className="heart hint--top" aria-label="Remove to favorites">
                     <MdFavorite />
                   </span> : 
@@ -74,4 +95,5 @@ Card.propTyoes = {
   isMovieView: PropTypes.bool,
 }
 
-export default connect(({favorite, user}) => ({favorite, user}), {onFavorite})(Card);
+export default connect(({favorites, user}) => ({favorites, user}),
+                       {onFavorite, unfavorite})(Card);
