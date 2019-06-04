@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import ReactStars from 'react-stars';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
+import {onFavorite} from '../../actions/favorite';
 
-const Card = ({movie, isMovieView, favorite, isFavorite, rating}) => {
-  const {_id,Title,Genre,Director,Trailer, ImagePath,Description} = movie
-  // console.log('%c MovieList','color:blue; font-size:16px; font-weight:bold');
-  // console.log('movie',movie)
+const Card = ({movie, isMovieView, user, rating, onFavorite}) => {
+  const {_id,Title,Genre,Director, ImagePath,Description} = movie
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // const onFavorited = (id) => {
+  //   setIsFavorite(!isFavorite);
+  // }
+  console.log('Movie View',_id)
 
   return(
     <div className="Card">
@@ -17,9 +25,14 @@ const Card = ({movie, isMovieView, favorite, isFavorite, rating}) => {
         </div>
         <div className="movie-details">
           <div>
-            <Link to={`/movies/${_id}`} onClick={() => getMovie(`${_id}`)}>
-              <h1>{Title}</h1>
-            </Link>
+            {
+              isMovieView ? <h1>{Title}</h1> 
+              :
+              <Link to={`/movies/${_id}`} onClick={() => getMovie(`${_id}`)}>
+                <h1>{Title}</h1>
+              </Link>
+            }
+            
           </div>
           <div>{Description}</div>
           <div>
@@ -32,7 +45,7 @@ const Card = ({movie, isMovieView, favorite, isFavorite, rating}) => {
                 value={parseFloat(rating)}
               />
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span className="heart hint--top" onClick={favorite}>
+            <span className="heart hint--top" onClick={() => onFavorite(user._id,_id)}>
                 {isFavorite ? 
                   <span className="heart hint--top" aria-label="Remove to favorites">
                     <MdFavorite />
@@ -44,7 +57,7 @@ const Card = ({movie, isMovieView, favorite, isFavorite, rating}) => {
               </span>
           </div>
           <div>
-            <span>Genre: {Genre.Name}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>Genre: {movie.Genre.Name}</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span>Director: {Director.Name}</span>
           </div>
         </div>
@@ -53,4 +66,12 @@ const Card = ({movie, isMovieView, favorite, isFavorite, rating}) => {
   )
 }
 
-export default Card;
+Card.propTyoes = {
+  movie: PropTypes.object,
+  favorite: PropTypes.func,
+  rating: PropTypes.number,
+  isFavorite: PropTypes.bool,
+  isMovieView: PropTypes.bool,
+}
+
+export default connect(({favorite, user}) => ({favorite, user}), {onFavorite})(Card);

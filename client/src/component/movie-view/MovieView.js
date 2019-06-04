@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import Card from '../movie-card/Card';
 import './MovieView.scss'
 import Comments from '../comments/Comments';
@@ -14,6 +15,7 @@ class MovieView extends Component {
     rating: null,
   }
   
+  isMovieView = true;
   
   componentDidMount() {
     const {id} = this.props.match.params;
@@ -69,11 +71,11 @@ class MovieView extends Component {
   }
 
   render() {
-    const {movie, favorited, comments} = this.state;
+    const { movie, favorited, comments} = this.state;
     const {user} = this.props;
     console.log('%c Sum','color:blue; font-size:16px; font-weight:bold');
     //Calculate average rating of each movie
-    console.log(user)
+    console.log(movie)
     let sum = [];
     for(let i = 0; i < comments.length; i++) {
       sum.push(comments[i].rating);
@@ -94,11 +96,11 @@ class MovieView extends Component {
               favorite={this.onFavorite}
               isFavorite={favorited}
               rating={rating}
-             />
+            />
           : null
         }
         {
-          user !== null && movie !==null ? 
+          movie !==null ? 
           <Comments 
             comments={comments} 
             user={user} 

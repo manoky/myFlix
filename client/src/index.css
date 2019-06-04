@@ -7,13 +7,14 @@
 body {
   padding: 0;
   /* background-image: url('http://flash.gtarcade.net/31/static/usr/uploads/201901/20190109080139_30824/images/poster.jpg'); */
-  background-attachment: fixed;
+  /* background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   font-family: 'Arimo', sans-serif;
   font-size: 14px;
   color: rgba(0,0,0,.54);
+  background: #eee;
 }
 
 h1 {
@@ -28,9 +29,10 @@ a {
 
 #app {
   position: absolute;
-  bottom: 0;
+  top: 0;
   height: 100%;
   width: 100%;
+  background: #eee;
 }
 
 .bg-video {

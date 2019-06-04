@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
 import Input from '@material-ui/core/Input';
@@ -9,27 +10,30 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import './Login.scss';
 import FormWrap from '../UI/wrapper/FormWrapper';
+import { login } from '../../actions/session';
 
 
-function Login({logUser, history}){
+function Login({history, login}){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onSubmitted = (e) => {
     e.preventDefault();
-    //console.log(email, password)
-    axios.post('/api/v1/login',{
-      Email: email,
-      Password: password
-    })
-    .then(res => {
-      console.log(res.data)
-      logUser(res.data)
-      history.push('/');
-    })
-    .catch(err => console.log(err));
+    login(email, password)
+      .then(res => {
+        //logUser(res.data)
+        history.push('/');
+      })
+    // axios.post('/api/v1/login',{
+    //   Email: email,
+    //   Password: password
+    // })
+    // .then(res => {
+    //   logUser(res.data)
+    //   history.push('/');
+    // })
+    // .catch(err => console.log(err));
   }
-
 
   return (
     <div className="Login-Form">
@@ -67,4 +71,4 @@ function Login({logUser, history}){
   )
 }
 
-export default Login;
+export default connect(null,{login})(Login);

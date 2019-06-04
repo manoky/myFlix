@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import { Route, BrowserRouter, Switch,Redirect} from 'react-router-dom';
 import MovieCard from '../movie-card/MovieCard';
 import MovieView from '../movie-view/MovieView';
@@ -8,10 +9,10 @@ import Header from '../UI/Header';
 import Footer from '../UI/Footer';
 import Login from '../login/Login';
 import Registration from '../registration/Registration';
+import fetchMovies from '../../actions/fetchMovies';
 
 class MainView extends Component {
   state = {
-    movies:[],
     user: null,
     loading: true
   }
@@ -20,43 +21,42 @@ class MainView extends Component {
 
   componentDidMount() {
     this.isMouted = true;
-    this.getMovies()
-    let user = localStorage.getItem('user');
-    if(user) {
-      let parsedUser = JSON.parse(user)
-      this.setState({user: parsedUser})
-    }
-    console.log(user)
-    
+    //this.getMovies()
+    // let user = localStorage.getItem('user');
+    // if(user) {
+    //   let parsedUser = JSON.parse(user)
+    //   //this.setState({user: parsedUser})
+    // }
+    this.props.fetchMovies();    
   }
 
   componentWillUnmount(){
     this.isMouted = false;
   }
 
-  getMovies = () => {
-    axios.get('/api/v1/movies')
-    .then(resp => {
-      const movies = resp.data
-      if(this.isMouted) {
-        this.setState({movies})
-      }
-    })
-    .catch(err => console.log(err))
-  }
+  // getMovies = () => {
+  //   axios.get('/api/v1/movies')
+  //   .then(resp => {
+  //     const movies = resp.data
+  //     if(this.isMouted) {
+  //       this.setState({movies})
+  //     }
+  //   })
+  //   .catch(err => console.log(err))
+  // }
 
 
-  logUser = (user) => {
-    this.setState({user: user});
-    localStorage.setItem('user',JSON.stringify(user));
-  }
+  // logUser = (user) => {
+  //   //this.setState({user: user});
+  //   localStorage.setItem('user',JSON.stringify(user));
+  // }
 
 
   render() {
-    const {movies, user} = this.state;
-    const {history} = this.props;
-    console.log('%c User','color:blue; font-size:16px; font-weight:bold');
-    console.log(user, 'History',history);
+    //const {} = this.state;
+    const {movies, user} = this.props;
+    // console.log('%c User','color:blue; font-size:16px; font-weight:bold');
+     console.log(this.props);
     return (
       <BrowserRouter>
         <main className="MainView">
@@ -98,4 +98,4 @@ class MainView extends Component {
   }
 }
 
-export default MainView;
+export default connect(({movies, user}) => ({movies, user}),{fetchMovies})(MainView);

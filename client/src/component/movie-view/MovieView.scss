@@ -9,8 +9,9 @@
   
   //separates the sidebar from the card component flex
   .Inner-View {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 10px;
+    margin: 0 20px 0 20px;
+    border: 1px solid #E8E8E8;
   }
 
   //floating the content of the card component

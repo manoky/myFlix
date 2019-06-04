@@ -99,7 +99,8 @@ router.get('/users/:username', (req, res) => {
     .catch(err => res.status(500).send(`Error: ${err}`))
 });
 
-router.get('/users/:username/favorites', (req, res) => {
+
+router.delete('/users/:username/favorites', (req, res) => {
   const username = req.params.username;
   Users.findOne({Username: username})
 });
@@ -117,10 +118,7 @@ router.post('/users', (req, res) => {
   if(errors) {
     res.status(422).json(errors);
   }
-
-  const username = req. body.Username;
-  const password = req.body.Password;
-  const email = req.body.Email;
+  const {username, password, email} = req.body;
 
   const hashPassword = Users.hashPassword(password);
   Users.findOne({Username: username})
@@ -186,6 +184,53 @@ router.delete('/users/:username', (req, res) => {
         res.status(200).send(`${username} was deleted`);
       }
     })
+});
+
+
+/****************************
+    Favorites requests
+ ****************************/
+
+router.get('/users/:username/favorites', (req, res) => {
+  const username = req.params.username;
+  Users.findOne({Username: username})
+});
+
+//Add user favorite movie
+router.post('/users/:userId/movies/:movieId', (req, res) => {
+  const {userId, movieId} = req.params;
+
+  Users.findOneAndUpdate({_id: mongoose.Types.ObjectId(userId)},
+    {$push: {FavoriteMovies:[movieId]}},
+    {new: true},
+    (err, updatedUser) => {
+      if(err) {
+        console.log(err);
+        res.status(500).send(`Error: ${err}`)
+      } else {
+        res.json(updatedUser.FavoriteMovies)
+      }
+    });
+
+});
+
+
+//Add user favorite movie
+router.delete('/users/:userId/movies/:movieId', (req, res) => {
+  const {userId, movieId} = req.params;
+
+  Users.findOneAndUpdate({_id: mongoose.Types.ObjectId(userId)},
+    {$pull: {FavoriteMovies:movieId}},
+    {new: true},
+    (err, updatedUser) => {
+      if(err) {
+        console.log(err);
+        res.status(500).send(`Error: ${err}`)
+      } else {
+        res.json(updatedUser.FavoriteMovies)
+      }
+    });
+
 });
 
 
@@ -260,6 +305,7 @@ router.post('/comments', (req, res) => {
   })
   .catch(err => res.status(500).send(`Error: ${err}`))
 })
+
 
 
 
