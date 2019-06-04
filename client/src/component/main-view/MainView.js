@@ -15,7 +15,8 @@ class MainView extends Component {
  
 
   componentDidMount() {
-    const id = this.props.user.user._id
+    let id;
+    this.props.user ? id = this.props.user.user._id : id = null;
     this.props.fetchMovies();
     this.props.getFavorite(id)    
   }

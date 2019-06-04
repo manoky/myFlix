@@ -21,18 +21,9 @@ function Login({history, login}){
     e.preventDefault();
     login(email, password)
       .then(res => {
-        //logUser(res.data)
         history.push('/');
       })
-    // axios.post('/api/v1/login',{
-    //   Email: email,
-    //   Password: password
-    // })
-    // .then(res => {
-    //   logUser(res.data)
-    //   history.push('/');
-    // })
-    // .catch(err => console.log(err));
+   
   }
 
   return (
