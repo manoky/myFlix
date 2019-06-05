@@ -15,7 +15,7 @@ if(process.env !== 'production') {
 
 const enhancer = compose(
   applyMiddleware(...middleware),
-  persistState(['user','comments','movies','movie','favorites'])
+  persistState(['user','comments','movies','favorites'])
 )
 
 const store = createStore(rootReducer, enhancer);

@@ -16,46 +16,20 @@ import './Comment.scss';
 
 const Comment = ({comment, username}) => {
   const {comment_body, rating} = comment;
+  console.log(comment)
 
   return (
     <div className="Comment">
-      {/* <div>User: {username}</div>
-      <div>
-        <ReactStars 
-          count={5}
-          size={20}
-          color2={'#ffd700'}
-          edit={false}
-          value={parseFloat(rating)}
-        />
-      </div>
-      <div>{comment_body}</div> */}
-
-
-
-
-
-
       <Card className="card">
       <CardHeader
         avatar={
           <Avatar aria-label="Recipe" className="avatar">
-            R
+            M
           </Avatar>
         }
-        // action={
-        //   <IconButton>
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={comment.username}
+        subheader={comment.createdAt}
       />
-      {/* <CardMedia
-        className={styles.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
-      /> */}
       <CardContent className="stars-card">
           <ReactStars 
             count={5}
@@ -69,7 +43,6 @@ const Comment = ({comment, username}) => {
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {comment_body}
-          
         </Typography>
       </CardContent>
     </Card>

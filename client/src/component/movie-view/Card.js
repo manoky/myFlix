@@ -4,7 +4,9 @@ import ReactStars from 'react-stars';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
-import {onFavorite, unfavorite} from '../../actions/favorite';
+import {onFavorite, unFavorite} from '../../actions/favorite';
+
+
 
 const Card = ({
   movie, 
@@ -13,7 +15,7 @@ const Card = ({
   rating, 
   onFavorite, 
   favorites,
-  unfavorite
+  unFavorite
   }) => {
 
       
@@ -21,15 +23,15 @@ const Card = ({
 
   
   let userId = null;
-  if(user) {
-    userId = user.user._id;
-  };
+  user !== null ? userId = user._id : null;
 
+  console.log
+ 
   const toggleFavorite = (userId, movieId) => {
     const found = favorites.includes(movieId);
     if(userId !== null || userId !== undefined) {
       if(found) {
-        unfavorite(userId, movieId)
+        unFavorite(userId, movieId)
       }else {
         onFavorite(userId, movieId)
       }
@@ -96,4 +98,4 @@ Card.propTyoes = {
 }
 
 export default connect(({favorites, user}) => ({favorites, user}),
-                       {onFavorite, unfavorite})(Card);
+                       {onFavorite, unFavorite})(Card);

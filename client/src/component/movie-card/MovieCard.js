@@ -1,16 +1,18 @@
 import React from 'react';
-import Card from './Card';
+import MCard from './MCard';
 import './MovieCard.scss';
-import Sidebar from '../UI/sidebar/Sidebar';
+import MovieSlider from '../slider/MovieSlider';
 
 const MovieCard = ({movies}) => {
   return(
     <div className="MovieCard">
-      <Sidebar />
+      <div className="carousel">
+        <MovieSlider />
+      </div>
       <div className='Movie-List'>
         { 
           movies.map(movie => (
-            <Card 
+            <MCard 
               key={movie._id}
               movie={movie}
             />

@@ -8,12 +8,14 @@ import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import './Login.scss';
+import Typography from '@material-ui/core/Typography';
 import FormWrap from '../UI/wrapper/FormWrapper';
 import { login } from '../../actions/session';
+import { getFavorite } from '../../actions/favorite';
+import './Login.scss';
 
 
-function Login({history, login}){
+function Login({history, login, getFavorite}){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,8 +23,11 @@ function Login({history, login}){
     e.preventDefault();
     login(email, password)
       .then(res => {
-        history.push('/');
+        if(res.status !== 400){
+          getFavorite(res.data._id);
+        }
       })
+      .then(history.push('/'))
    
   }
 
@@ -31,6 +36,9 @@ function Login({history, login}){
       <div className="Inner-Login-Form">
         <FormWrap>
           <form onSubmit={onSubmitted}>
+            <Typography gutterBottom variant="h5" component="h2">
+              Log in
+            </Typography>
             <div className="Login-Email">
               <FormControl fullWidth={true}>
                 <InputLabel htmlFor="email">Email address</InputLabel>
@@ -53,7 +61,7 @@ function Login({history, login}){
                 />
               </FormControl>
             </div>
-            <Button variant="contained" color="primary" fullWidth={true} type="submit">Login</Button>
+            <Button variant="contained" color="secondary" fullWidth={true} type="submit">Login</Button>
             <p>Don't have an account? <Link to='/signup'>Sign up here</Link></p>
           </form>
         </FormWrap> 
@@ -62,4 +70,4 @@ function Login({history, login}){
   )
 }
 
-export default connect(null,{login})(Login);
+export default connect(null,{login, getFavorite})(Login);

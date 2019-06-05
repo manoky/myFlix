@@ -1,7 +1,8 @@
 export const types = {
   GETFAVORITES: 'GETFAVORITES',
   FAVORITE: 'FAVORITE',
-  UNFAVORITE: 'UNFAVORITE'
+  UNFAVORITE: 'UNFAVORITE',
+  RESETFAVORITES: 'RESETFAVORITES'
 }
 
 
@@ -17,8 +18,12 @@ export const onFavorite = (userId, movieId) => ({
   method:'POST'
 });
 
-export const unfavorite = (userId, movieId) => ({
+export const unFavorite = (userId, movieId) => ({
   type: types.UNFAVORITE,
   api: `users/${userId}/movies/${movieId}`,
   method: 'DELETE'
+});
+
+export const resetFavorite = () => ({
+  type: types.RESETFAVORITES,
 });

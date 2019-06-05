@@ -1,5 +1,4 @@
 import {types} from '../actions/favorite';
-import {unfavorite} from '../actions/favorite';
 
 const initialState = [];
 
@@ -12,7 +11,10 @@ const favoriteReducer = (state = initialState, action) => {
       return action.data;
 
     case `${types.UNFAVORITE}_SUCCESS`:
-      return action.data
+      return action.data;
+
+    case types.RESETFAVORITES:
+        return initialState
     default:
       return state;
   }

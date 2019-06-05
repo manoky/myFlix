@@ -17,8 +17,8 @@ const CommentForm = ({activeUser, movieId, sendComment}) => {
   
   useEffect(() => {
     if(activeUser !== null && activeUser !== undefined) {
-      setUserId(activeUser.user._id)
-      setUser_name(activeUser.user.Username)
+      setUserId(activeUser._id)
+      setUser_name(activeUser.Username)
     }
     setMovie_id(movieId);
   })

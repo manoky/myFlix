@@ -3,30 +3,33 @@ import {connect} from 'react-redux';
 import { Route, BrowserRouter, Switch,Redirect} from 'react-router-dom';
 import MovieCard from '../movie-card/MovieCard';
 import MovieView from '../movie-view/MovieView';
-import './MainView.scss'
 import Header from '../UI/Header';
 import Footer from '../UI/Footer';
 import Login from '../login/Login';
 import Registration from '../registration/Registration';
 import fetchMovies from '../../actions/fetchMovies';
 import { getFavorite } from '../../actions/favorite';
+import { setUser } from '../../actions/session';
+import User from '../user/User';
+import './MainView.scss'
 
 class MainView extends Component {
  
-
   componentDidMount() {
+    const {user} = this.props
     let id;
-    this.props.user ? id = this.props.user.user._id : id = null;
-    this.props.fetchMovies();
-    this.props.getFavorite(id)    
+    user ? id = user._id : id = null;
+    this.props.fetchMovies()
+    .then()
+    //this.props.getFavorite(id)
   }
 
 
   render() {
 
     const {movies, user} = this.props;
-    // console.log('%c User','color:blue; font-size:16px; font-weight:bold');
-     //console.log(this.props);
+    console.log('%c User','color:blue; font-size:16px; font-weight:bold');
+     console.log(this.props.user);
     return (
       <BrowserRouter>
         <main className="MainView">
@@ -58,6 +61,7 @@ class MainView extends Component {
               }} 
             />
             <Route path='/signup' component={Registration} />
+            <Route path='/user' component={User} />
           </Switch>
           </div>
           <Footer />
@@ -67,5 +71,5 @@ class MainView extends Component {
   }
 }
 
-export default connect(({movies, user}) => ({movies, user}),
+export default connect(({movies, user, favorites}) => ({movies, user, favorites}),
                       {fetchMovies, getFavorite})(MainView);

@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import Card from '../movie-card/Card';
+import Card from './Card';
 import './MovieView.scss'
 import Comments from '../comments/Comments';
 import Sidebar from '../UI/sidebar/Sidebar';

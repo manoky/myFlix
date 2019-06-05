@@ -1,5 +1,14 @@
 .Header {
-  background: #4285f4;
-  height: 60px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16)
+  flex-grow: 1;
+
+  a {
+    color: #fff;
+  }
+
+  .menuButton {
+    margin-right: 10px;
+  }
+  .title {
+    flex-grow: 1;
+  }
 }

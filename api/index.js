@@ -107,11 +107,11 @@ router.delete('/users/:username/favorites', (req, res) => {
 
 //User post request (create new user)
 router.post('/users', (req, res) => {
-  req.checkBody('Username','username is required').notEmpty();
-  req.checkBody('Username','contains non Alphanumeric characters - not allowed').isAlphanumeric();
-  req.checkBody('Password','password is required').notEmpty();
-  req.checkBody('Email','Email is required').notEmpty();
-  req.checkBody('Email','Email does not appear to be valid').isEmail();
+  req.checkBody('username','username is required').notEmpty();
+  req.checkBody('username','contains non Alphanumeric characters - not allowed').isAlphanumeric();
+  req.checkBody('password','password is required').notEmpty();
+  req.checkBody('email','Email is required').notEmpty();
+  req.checkBody('email','Email does not appear to be valid').isEmail();
 
   const errors = req.validationErrors();
 
