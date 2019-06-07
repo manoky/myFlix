@@ -5,8 +5,11 @@ const initialState = [];
 const ratingReducer = (state=initialState, action) => {
   switch(action.type) {
     case `${types.GETCOMMENTS}_SUCCESS`:
-        
-      return [...action.data];
+      return action.data;
+
+    case `${types.POSTCOMMENTS}_SUCCESS`:
+      return [...action.data]
+      
     default:
       return state;
   }

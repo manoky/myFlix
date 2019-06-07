@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
-import {showModal, hideModal } from '../../../actions/modal';
+import { showModal, hideModal } from '../../../actions/modal';
+import { postComments, getComments } from '../../../actions/comments';
 import './CommentForm.scss';
 
 
 
 
-const CommentForm = ({activeUser, movieId, sendComment, showModal}) => {
+const CommentForm = ({activeUser, movieId, postComments, showModal, getComments}) => {
 
   let [comment_body, setComment_body] = useState('');
   let [rating, setRating] = useState(1);
@@ -30,8 +31,9 @@ const CommentForm = ({activeUser, movieId, sendComment, showModal}) => {
     if(comment_body === '') {
       return;
     }
-    sendComment(userId, username, movie_id, rating, comment_body);
+    postComments(userId, username, movie_id, rating, comment_body);
     setComment_body('');
+    getComments(movieId);
   }
 
   const ratingChanged = (newRating) => {
@@ -69,4 +71,4 @@ CommentForm.propTypes = {
   showModal: PropTypes.func,
 }
 
-export default connect(null,{showModal})(CommentForm);
+export default connect(null,{showModal,postComments, getComments})(CommentForm);

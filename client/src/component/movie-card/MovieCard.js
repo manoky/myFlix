@@ -1,8 +1,6 @@
 import React from 'react';
 import MCard from './MCard';
 import MovieSlider from '../slider/MovieSlider';
-import { connect } from 'react-redux';
-import { getRatings } from '../../actions/comments'
 import './MovieCard.scss';
 
 const MovieCard = ({movies, rating, getRatings}) => {
@@ -29,4 +27,4 @@ const MovieCard = ({movies, rating, getRatings}) => {
   )
 }
 
-export default connect(null,{getRatings})(MovieCard);
+export default MovieCard;

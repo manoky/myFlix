@@ -31,14 +31,14 @@ class MovieView extends Component {
     .catch(err => console.log(err));
   }
 
-  onGetComments =(id)=> {
-    axios.get(`/api/v1/comments/${id}`)
-    .then(res => {
-      const comments =res.data
-      this.setState({comments})
-    })
-    .catch(err => console.log(err))
-  }
+  // onGetComments =(id)=> {
+  //   axios.get(`/api/v1/comments/${id}`)
+  //   .then(res => {
+  //     const comments =res.data
+  //     this.setState({comments})
+  //   })
+  //   .catch(err => console.log(err))
+  // }
 
   onComment = (
                 userId,
