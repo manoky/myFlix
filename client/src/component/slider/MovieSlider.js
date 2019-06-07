@@ -20,8 +20,8 @@ class MovieSlider extends Component {
           {
             movies.map(movie => {
               return(
-                <div>
-                  <img src={movie.ImagePath} className="slider-img" />
+                <div key={movie._id}>
+                  <img src={movie.ImagePath}  className="slider-img" />
                 </div>
               )
             })

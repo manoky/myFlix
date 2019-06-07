@@ -21,6 +21,9 @@ const Header = ({ logout, user, resetFavorite }) => {
           {
             user ? 
                   <div> 
+                    <Button color="inherit">
+                      <Link to='/'> Movies</Link>
+                    </Button>
                     <Button color="inherit" onClick={resetFavorite}>
                       <Link to='/' onClick={logout}> Log Out</Link>
                     </Button>
@@ -30,6 +33,9 @@ const Header = ({ logout, user, resetFavorite }) => {
                   </div>
                   :
                   <div>
+                    <Button color="inherit">
+                      <Link to='/'> Movies</Link>
+                    </Button>
                     <Button color="inherit">
                       <Link to='/login'>Log In</Link>
                     </Button>

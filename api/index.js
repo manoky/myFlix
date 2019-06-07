@@ -278,10 +278,10 @@ router.get('/comments', (req, res) => {
   .catch(err => res.status(500).send(`Error: ${err}`))
 });
 
-router.get('/comments/:id', (req, res) => {
-  const {id} = req.params;
+router.get('/comments', (req, res) => {
+  // const {id} = req.params;
   Comments.find()
-  .where('movie_id').equals(id)
+  // .where('movie_id').equals(id)
   .then(comments => {
     res.json(comments)
   })

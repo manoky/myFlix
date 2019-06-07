@@ -48,8 +48,8 @@ const User = ({user,movies, favorites}) => {
             </List>
         </div>
         <div className="favorite-column">
-            <h1>Favorite Movies</h1>
-            <div className="favorite-grid">
+          <h1>Favorite Movies</h1>
+          <div className="favorite-grid">
             {
               movies.filter(m => favorites.includes(m._id)).map(movie => {
                 return (

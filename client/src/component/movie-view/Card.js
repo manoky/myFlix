@@ -9,13 +9,12 @@ import {onFavorite, unFavorite} from '../../actions/favorite';
 
 
 const Card = ({
-  movie, 
-  isMovieView, 
-  user, 
-  rating, 
+  movie,  
+  user,  
   onFavorite, 
   favorites,
-  unFavorite
+  unFavorite,
+  comments
   }) => {
 
       
@@ -25,8 +24,16 @@ const Card = ({
   let userId = null;
   user !== null ? userId = user._id : null;
 
-  console.log
- 
+
+
+  let rating = [];
+	comments.map(com => {
+		com.movie_id === _id ? rating.push(com.rating) : null;
+	});
+	const avRating = rating.reduce((sum, num) => sum + num,0) / rating.length;
+	movie['rating'] = avRating;
+
+ console.log(movie.rating)
   const toggleFavorite = (userId, movieId) => {
     const found = favorites.includes(movieId);
     if(userId !== null || userId !== undefined) {
@@ -40,21 +47,14 @@ const Card = ({
 
   return(
     <div className="Card">
-      {isMovieView ? <embed width="100%" height="450" src={movie.Trailer} />: null}
+      <embed width="100%" height="450" src={movie.Trailer} />
       <div className="Inner-Card">
         <div className="movie-image">
           <img src={ImagePath} alt={Title}/>
         </div>
         <div className="movie-details">
           <div>
-            {
-              isMovieView ? <h1>{Title}</h1> 
-              :
-              <Link to={`/movies/${_id}`}>
-                <h1>{Title}</h1>
-              </Link>
-            }
-            
+            <h1>{Title}</h1>   
           </div>
           <div>{Description}</div>
           <div>
@@ -64,10 +64,10 @@ const Card = ({
                 size={20}
                 color2={'#ffd700'}
                 edit={false}
-                value={parseFloat(rating)}
+                value={parseFloat(movie.rating)}
               />
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span className="heart hint--top" onClick={() => toggleFavorite(userId, _id)}>
+            <span className="heart hint--top" onClick={() => user ? toggleFavorite(userId, _id) : null}>
                 {
                   favorites.includes(_id) ? 
                   <span className="heart hint--top" aria-label="Remove to favorites">
@@ -91,11 +91,8 @@ const Card = ({
 
 Card.propTyoes = {
   movie: PropTypes.object,
-  favorite: PropTypes.func,
-  rating: PropTypes.number,
-  isFavorite: PropTypes.bool,
   isMovieView: PropTypes.bool,
 }
 
-export default connect(({favorites, user}) => ({favorites, user}),
+export default connect(({favorites, user, comments}) => ({favorites, user, comments}),
                        {onFavorite, unFavorite})(Card);

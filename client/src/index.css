@@ -4,14 +4,22 @@
   box-sizing: border-box;
 }
 
+body,html {
+  height: 100%;
+}
+
 body {
   padding: 0;
-  /* background-image: url('http://flash.gtarcade.net/31/static/usr/uploads/201901/20190109080139_30824/images/poster.jpg'); */
+  margin: 0;
+  /* background-image: url('https://images.wallpaperscraft.com/image/assassins_creed_logo_art_113285_2560x1024.jpg');  */
+  background: #000;
   font-family: 'Arimo', sans-serif;
   font-size: 14px;
   color: rgba(0,0,0,.54);
-  background: #eee;
-  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background: #eee; */
 }
 
 h1 {
@@ -25,9 +33,9 @@ a {
 
 
 #app {
-  height: 100vh;
+
   width: 100%;
-  background: #eee;
+  /* background: #eee; */
 }
 
 .bg-video {

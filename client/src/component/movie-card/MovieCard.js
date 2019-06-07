@@ -1,9 +1,12 @@
 import React from 'react';
 import MCard from './MCard';
-import './MovieCard.scss';
 import MovieSlider from '../slider/MovieSlider';
+import { connect } from 'react-redux';
+import { getRatings } from '../../actions/comments'
+import './MovieCard.scss';
 
-const MovieCard = ({movies}) => {
+const MovieCard = ({movies, rating, getRatings}) => {
+
   return(
     <div className="MovieCard">
       <div className="carousel">
@@ -11,16 +14,19 @@ const MovieCard = ({movies}) => {
       </div>
       <div className='Movie-List'>
         { 
-          movies.map(movie => (
-            <MCard 
-              key={movie._id}
-              movie={movie}
-            />
-          ))
+          movies.map(movie => {
+            return (
+              <MCard 
+                key={movie._id}
+                movie={movie}
+                rating={rating}
+              />
+            )
+          })
         }
       </div>
     </div>
   )
 }
 
-export default MovieCard;
+export default connect(null,{getRatings})(MovieCard);

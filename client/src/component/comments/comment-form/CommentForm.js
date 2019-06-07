@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux';
+import {showModal, hideModal } from '../../../actions/modal';
 import './CommentForm.scss';
 
 
 
 
-const CommentForm = ({activeUser, movieId, sendComment}) => {
+const CommentForm = ({activeUser, movieId, sendComment, showModal}) => {
 
   let [comment_body, setComment_body] = useState('');
   let [rating, setRating] = useState(1);
@@ -51,6 +53,8 @@ const CommentForm = ({activeUser, movieId, sendComment}) => {
         <textarea 
           onChange={e => setComment_body(e.target.value)}
           value={comment_body}
+          onFocus={ activeUser ? null : showModal}
+          onClick={ activeUser ? null : showModal}
         />
       </div>
         <Button variant="contained" size="small" type="submit" >
@@ -62,6 +66,7 @@ const CommentForm = ({activeUser, movieId, sendComment}) => {
 
 CommentForm.propTypes = {
   activeUser: PropTypes.object,
+  showModal: PropTypes.func,
 }
 
-export default CommentForm;
+export default connect(null,{showModal})(CommentForm);

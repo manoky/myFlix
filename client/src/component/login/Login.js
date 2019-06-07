@@ -12,23 +12,25 @@ import Typography from '@material-ui/core/Typography';
 import FormWrap from '../UI/wrapper/FormWrapper';
 import { login } from '../../actions/session';
 import { getFavorite } from '../../actions/favorite';
+import { hideModal } from '../../actions/modal';
 import './Login.scss';
 
 
-function Login({history, login, getFavorite}){
+const Login = ({history, login, getFavorite, hideModal}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onSubmitted = (e) => {
     e.preventDefault();
-    login(email, password)
+    if(password !== '' || email !== '') {
+      login(email, password)
       .then(res => {
         if(res.status !== 400){
           getFavorite(res.data._id);
         }
       })
       .then(history.push('/'))
-   
+    }
   }
 
   return (
@@ -70,4 +72,4 @@ function Login({history, login, getFavorite}){
   )
 }
 
-export default connect(null,{login, getFavorite})(Login);
+export default connect(null,{login, getFavorite, hideModal})(Login);

@@ -2,17 +2,16 @@ import React,{ Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Card from './Card';
-import './MovieView.scss'
 import Comments from '../comments/Comments';
 import Sidebar from '../UI/sidebar/Sidebar';
+import { getRatings } from '../../actions/comments';
+import './MovieView.scss'
 
 
 class MovieView extends Component {
   state = {
     movie: null,
-    favorited: false,
-    comments: [],
-    rating: null,
+    movieComments: [],
   }
   
   isMovieView = true;
@@ -20,7 +19,7 @@ class MovieView extends Component {
   componentDidMount() {
     const {id} = this.props.match.params;
     this.onGetMovie(id);
-    this.onGetComments(id);
+    //this.onGetComments(id);
   }
 
   onGetMovie = (id) => {
@@ -58,29 +57,20 @@ class MovieView extends Component {
     .then(res => {
       this.setState(prevState =>({
         comments: [...prevState.comments, res.data]
-      }))
-      console.log(res.data)
+      }));
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
     
   }
+  
 
   render() {
-    const { movie, comments} = this.state;
-    const {user} = this.props;
-    //console.log('%c Sum','color:blue; font-size:16px; font-weight:bold');
-    //Calculate average rating of each movie
-    
-    let sum = [];
-    for(let i = 0; i < comments.length; i++) {
-      sum.push(comments[i].rating);
-    }
+    const { movie} = this.state;
+    const {user, comments} = this.props;
+    const m_id = this.props.match.params.id
 
-    const rating = sum.reduce((all, num) => {
-      return all + parseFloat(num);
-    },0) / sum.length;
-
-    //console.log(average);
+    const filteredComments = comments.filter(comment => comment.movie_id === m_id)
+   
     return (
       <div className="MovieView">
         <Sidebar />
@@ -88,14 +78,13 @@ class MovieView extends Component {
         { movie !== null ?
             <Card movie={movie} 
               isMovieView={this.isMovieView}
-              rating={rating}
             />
           : null
         }
         {
           movie !==null ? 
           <Comments 
-            comments={comments} 
+            comments={filteredComments} 
             user={user} 
             movieId={movie._id}
             sendComment={this.onComment}
@@ -110,4 +99,4 @@ class MovieView extends Component {
 
 }
 
-export default MovieView;
+export default connect(({comments}) => ({comments}))(MovieView);

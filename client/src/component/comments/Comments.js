@@ -13,7 +13,6 @@ class Comments extends Component {
       activeUser = user;
     }
 
-    //console.log(movieId)
     return (
       <div className='Comments'>
         <h1>Comments Here</h1>
@@ -23,15 +22,16 @@ class Comments extends Component {
           sendComment={sendComment}
         />
         <div className="comment-list">
-        {
-          comments.map(comment => (
-            <Comment 
-              key={comment._id} 
-              comment={comment} 
-              username={comment.username}
-            />
-          ))
-        }
+          {
+            comments.map(comment => {
+              return(
+              <Comment 
+                key={comment._id} 
+                comment={comment.movie_id === movieId ? comment : null} 
+                username={comment.username}
+              />
+            )})
+          }
         </div>
        
       </div>

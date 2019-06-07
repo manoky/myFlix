@@ -8,9 +8,9 @@ import Footer from '../UI/Footer';
 import Login from '../login/Login';
 import Registration from '../registration/Registration';
 import fetchMovies from '../../actions/fetchMovies';
-import { getFavorite } from '../../actions/favorite';
-import { setUser } from '../../actions/session';
 import User from '../user/User';
+import {getComments } from '../../actions/comments';
+import Modal from '../UI/modal/Modal';
 import './MainView.scss'
 
 class MainView extends Component {
@@ -19,9 +19,8 @@ class MainView extends Component {
     const {user} = this.props
     let id;
     user ? id = user._id : id = null;
-    this.props.fetchMovies()
-    .then()
-    //this.props.getFavorite(id)
+    this.props.fetchMovies();
+    this.props.getComments();
   }
 
 
@@ -34,6 +33,7 @@ class MainView extends Component {
       <BrowserRouter>
         <main className="MainView">
           <Header />
+          <Modal />
           <div className="MainView-Inner">
           <Switch>
             <Redirect from="/home" to="/" />
@@ -72,4 +72,4 @@ class MainView extends Component {
 }
 
 export default connect(({movies, user, favorites}) => ({movies, user, favorites}),
-                      {fetchMovies, getFavorite})(MainView);
+                      {fetchMovies, getComments})(MainView);
