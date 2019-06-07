@@ -11,7 +11,7 @@ import './MovieView.scss'
 class MovieView extends Component {
   state = {
     movie: null,
-    movieComments: [],
+    // movieComments: [],
   }
   
   isMovieView = true;
@@ -31,14 +31,14 @@ class MovieView extends Component {
     .catch(err => console.log(err));
   }
 
-  onGetComments =(id)=> {
-    axios.get(`/api/v1/comments/${id}`)
-    .then(res => {
-      const comments =res.data
-      this.setState({comments})
-    })
-    .catch(err => console.log(err))
-  }
+  // onGetComments =(id)=> {
+  //   axios.get(`/api/v1/comments/${id}`)
+  //   .then(res => {
+  //     const comments =res.data
+  //     this.setState({comments})
+  //   })
+  //   .catch(err => console.log(err))
+  // }
 
   onComment = (
                 userId,
@@ -69,6 +69,8 @@ class MovieView extends Component {
     const {user, comments} = this.props;
     const m_id = this.props.match.params.id
 
+    console.log(comments)
+    //debugger;
     const filteredComments = comments.filter(comment => comment.movie_id === m_id)
    
     return (

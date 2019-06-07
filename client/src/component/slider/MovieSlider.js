@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Slider from "react-slick";
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import './Slider.scss';
 
 class MovieSlider extends Component {
@@ -21,7 +22,9 @@ class MovieSlider extends Component {
             movies.map(movie => {
               return(
                 <div key={movie._id}>
-                  <img src={movie.ImagePath}  className="slider-img" />
+                  <Link to={`/movies/${movie._id}`}>
+                    <img src={movie.ImagePath}  className="slider-img" />
+                  </Link>
                 </div>
               )
             })

@@ -17,19 +17,6 @@
     margin: auto;
   }
 
-
-  .Card {
-    
-    .card-grid {
-      max-width: 250px;
-    }
-
-    .card-grid-img {
-      height: 265px;
-      width: 100%;
-    }
-  }
-
   .favorite-column{
     padding: 20px;
     min-height: 500px;
@@ -41,9 +28,25 @@
     .favorite-grid {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 10px;
       padding: 5px;
+      justify-items: center;
+
+      
+      .Card {
+        margin: 0;
+        width: 100%;
+        .card-grid {
+          max-width: 100%;
+          height: auto;
+        }
+
+        .card-grid-img {
+          height: auto;
+          width: 100%;
+        }
+      }
     }
   }
 
