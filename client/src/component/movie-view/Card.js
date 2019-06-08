@@ -34,7 +34,7 @@ const Card = ({
 	const avRating = rating.reduce((sum, num) => sum + num,0) / rating.length;
 	movie['rating'] = avRating;
 
- console.log(movie.rating)
+
   const toggleFavorite = (userId, movieId) => {
     const found = favorites.includes(movieId);
     if(userId !== null || userId !== undefined) {
@@ -60,13 +60,17 @@ const Card = ({
           <div>{Description}</div>
           <div>
             <span>
-              <ReactStars 
+              {
+                movie.rating > 1 ? 
+                <ReactStars 
                 count={5}
                 size={20}
                 color2={'#ffd700'}
                 edit={false}
                 value={parseFloat(movie.rating)}
-              />
+              /> : null
+              }
+              
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span className="heart hint--top" onClick={() => user ? toggleFavorite(userId, _id) : null}>
                 {
@@ -103,6 +107,11 @@ const Card = ({
 Card.propTyoes = {
   movie: PropTypes.object,
   isMovieView: PropTypes.bool,
+  favorites: PropTypes.array,
+  user: PropTypes.object,
+  onFavorite: PropTypes.func,
+  unFavorite: PropTypes.func,
+  comments: PropTypes.array,
 }
 
 export default connect(({favorites, user, comments}) => ({favorites, user, comments}),

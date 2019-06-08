@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import MCard from '../movie-card/MCard';
 import './Directors.scss';
 
@@ -17,9 +18,8 @@ const Directors = ({movies, match}) => {
 				</p>
 				<p>Date of Birth: {directorInfo.Director.DoB ? directorInfo.Director.DoB : 'N/A'}</p>
 				<p>Place of Birth: {directorInfo.Director.PoB ? directorInfo.Director.PoB : 'N/A'}</p>
-				<p></p>
-				<h2>Movies Directed by {`${directorInfo.Director.Name}`}</h2>
-
+				<h2 className='directed-by'>Movies Directed by {`${directorInfo.Director.Name}`}</h2>
+				<hr />
 				<div className="director-movies">
 					{
 						directors.map(movie => (
@@ -32,6 +32,11 @@ const Directors = ({movies, match}) => {
 			</div>
 		</div>
   )
+}
+
+Directors.propTypes ={
+	movies: PropTypes.object,
+	match: PropTypes.object,
 }
 
 export default connect(({movies}) => ({movies}))(Directors);

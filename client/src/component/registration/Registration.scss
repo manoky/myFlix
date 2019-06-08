@@ -6,37 +6,66 @@
   .Inner-Login-Form {
     margin: auto;
     padding: 60px;
-  }
-
-  video {
-    width: 100%;
-    margin: auto;
-    z-index: 1;
-    height: auto;
-    bottom: 0;
-  }
-
-  form {
-    z-index: 23;
     position: relative;
-    top: -390px;
-    width: 30%;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
+    width: 100%;
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: 700;
+    .bg-video {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    video {
+      width: 100%;
+      margin: auto;
+    }
+
+    .log-reg-form{
+      position: absolute;
+      width: 100%;
+      top: 0px;
+      display: flex;
+      justify-content: center;
+      height: auto;
+      bottom: 0;
+  
+      form {
+        width: 300px;
+        background: #fff;
+        padding: 20px;
+        align-self: center;
+      }
     }
   }
+
   
-  .Registration-Email {
+
+  
+  .Login-Email {
     margin-bottom: 10px;
   }
 
-  .Registration-Password {
+  .Login-Password {
     margin-bottom: 20px;
+  }
+
+  @media all and (max-width:768px) {
+
+    .Inner-Login-Form {
+      padding: 0px;
+      border: none; 
+      .log-reg-form {
+        form {
+          width: 100%;
+        }
+  
+      }
+  
+      .bg-video {
+        display: none;
+      }
+    }
+   
   }
 }

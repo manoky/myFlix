@@ -21,13 +21,6 @@
 
   }
 
-  // .Inner-Card {
-  //   width: 100%;
-  //   display: flex;
-  //   justify-content: space-around;
-  //   margin-bottom: 20px;
-  // }
-  
 
   .movie-image {
    
@@ -46,5 +39,11 @@
       text-align: center;
     }
 
+  }
+
+  @media all and (max-width: 1074px) {
+    .Movie-List {
+      justify-content: center;
+    }
   }
 }

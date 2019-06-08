@@ -28,10 +28,9 @@ class MainView extends Component {
 
 
   render() {
-
+    
     const {movies, user} = this.props;
-    console.log('%c User','color:blue; font-size:16px; font-weight:bold');
-     console.log(this.props.user);
+
     return (
       <BrowserRouter>
         <main className="MainView">

@@ -1,9 +1,10 @@
 import React from 'react';
 import MCard from './MCard';
 import MovieSlider from '../slider/MovieSlider';
+import PropTypes from 'prop-types';
 import './MovieCard.scss';
 
-const MovieCard = ({movies, rating, getRatings}) => {
+const MovieCard = ({movies, rating}) => {
 
   return(
     <div className="MovieCard">
@@ -17,7 +18,6 @@ const MovieCard = ({movies, rating, getRatings}) => {
               <MCard 
                 key={movie._id}
                 movie={movie}
-                rating={rating}
               />
             )
           })
@@ -25,6 +25,10 @@ const MovieCard = ({movies, rating, getRatings}) => {
       </div>
     </div>
   )
+}
+
+MovieCard.propTypes = {
+  movies: PropTypes.array,
 }
 
 export default MovieCard;

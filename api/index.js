@@ -241,30 +241,7 @@ router.delete('/users/:userId/movies/:movieId', (req, res) => {
 });
 
 
-/****************************
-    Genre requests
- ****************************/
 
-router.get('/genres/:name', (req, res) => {
-  const name = req.params.name;
-   Movies.find({"Genre.Name": name})
-     .then(movies => res.json(movies))
-     .catch(err => res.status(500).send(`Error ${err}`))
-});
-
-
-/****************************
-  Directors requests
-****************************/
-
-router.get('/directors/:name', (req, res) => {
-  const name = req.params.name;
-  Movies.find({"Director.Name": name})
-  .then(movies => {
-    res.json(movies)
-  })
-  .catch(err => res.status(500).send(`Error: ${err}`))
-});
 
 /****************************
   Comment requests

@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 import FormWrap from '../UI/wrapper/FormWrapper';
 import { login } from '../../actions/session';
 import { getFavorite } from '../../actions/favorite';
 import { hideModal } from '../../actions/modal';
+import PropTypes from 'prop-types';
 import './Login.scss';
 
 
@@ -22,17 +20,20 @@ const Login = ({history, login, getFavorite, hideModal}) => {
 
   const onSubmitted = (e) => {
     e.preventDefault();
-    if(password !== '' || email !== '') {
+    if(password !== '' && email !== '') {
       login(email, password)
       .then(res => {
         if(res.status !== 400){
           getFavorite(res.data._id);
         }
       })
-      .then(history.push('/'))
+      .then(() => {
+        hideModal();
+        history.push('/')
+      })
     }
   }
-
+  console.log(password)
   return (
     <div className="Login-Form">
       <div className="Inner-Login-Form">
@@ -70,6 +71,14 @@ const Login = ({history, login, getFavorite, hideModal}) => {
       </div>
     </div>
   )
+}
+
+Login.propTypes = {
+  login: PropTypes.func,
+  getFavorite: PropTypes.func,
+  hideModal: PropTypes.func,
+  history: PropTypes.object,
+  hideModal: PropTypes.func,
 }
 
 export default connect(null,{login, getFavorite, hideModal})(Login);

@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {logout} from '../../actions/session';
 import { resetFavorite } from '../../actions/favorite';
+import PropTypes from 'prop-types';
 import './Header.scss';
 
 
@@ -51,5 +52,11 @@ const Header = ({ logout, user, resetFavorite }) => {
     </div>
   )
 };
+
+Header.propTypes = {
+  user: PropTypes.object,
+  logout: PropTypes.func,
+  resetFavorite: PropTypes.func,
+}
 
 export default connect(({user}) => ({user}),{logout, resetFavorite})(Header);

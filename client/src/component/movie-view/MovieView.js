@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Card from './Card';
 import Comments from '../comments/Comments';
 import Sidebar from '../UI/sidebar/Sidebar';
-import { getRatings } from '../../actions/comments';
+import PropTypes from 'prop-types';
 import './MovieView.scss'
 
 
@@ -64,6 +64,10 @@ class MovieView extends Component {
     )
   }
 
+}
+
+MovieView.propTypes = {
+  comments: PropTypes.array,
 }
 
 export default connect(({comments}) => ({comments}))(MovieView);

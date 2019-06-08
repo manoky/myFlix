@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Sidebar.scss';
 
 
@@ -13,7 +14,7 @@ const Sidebar = ({movies}) => {
 	});
 	const genres = names.filter((m,i,a) => a.indexOf(m)===i);
 	const directors = direct.filter((m,i,a) => a.indexOf(m)===i);
-    console.log('Genres', directors)
+  
   return (
     <div className='sidebar'>
       <div className='genre-bar'>
@@ -46,6 +47,10 @@ const Sidebar = ({movies}) => {
       <div>Featured Movies</div>
     </div>
   )
+}
+
+Sidebar.propTypes = {
+  movies: PropTypes.array,
 }
 
 export default connect(({movies}) => ({movies}))(Sidebar);

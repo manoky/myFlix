@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import Login from '../../login/Login';
-import {hideModal, showModal} from '../../../actions/modal';
+import {hideModal} from '../../../actions/modal';
+import PropTypes from 'prop-types';
 import './Modal.scss';
 
 
@@ -27,6 +28,11 @@ const Modal = ({modal, hideModal}) => {
       </div>
     </div>
   )
+}
+
+Modal.propTypes = {
+  modal: PropTypes.bool,
+  hideModal: PropTypes.func
 }
 
 export default connect(({modal}) => ({modal}), {hideModal})(Modal);

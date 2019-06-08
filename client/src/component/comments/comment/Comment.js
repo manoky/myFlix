@@ -46,4 +46,8 @@ const Comment = ({comment}) => {
   )
 }
 
+Comment.propTypes = {
+  comment: PropTypes.object,
+}
+
 export default Comment;

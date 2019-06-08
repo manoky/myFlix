@@ -20,6 +20,7 @@
   .Card {
     border: 1px solid #E8E8E8;
     padding: 25px;
+
   }
 
   .Inner-View {
@@ -63,10 +64,80 @@
 
     a {
       text-decoration: none;
+      color: inherit;
+    }
+
+    .genre-direct {
+      span {
+        margin-right: 10px;
+
+        a {
+          margin-left: 5px;
+          font-style: italic;
+        }
+      }
     }
 
     div {
       margin-top: 20px;
     }
+  }
+
+  @media all and (max-width: 970px) {
+
+    .movie-details {
+      padding-left: 20px;
+      padding-right: 20px;
+      h1 {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+    }
+    div {
+      font-size: 14px;
+    }
+    
+  }
+
+  @media all and (max-width: 765px) {
+    margin: 0;
+    padding: 0px;
+
+    .Card {
+      padding: 0;
+
+      embed {
+        height: 300px;
+      }
+    }
+
+    .Inner-Card {
+      display: block;
+    }
+
+    .movie-image {
+      max-width: 100%;
+      display: flex;
+      img {
+        margin-bottom: 0;
+        margin: auto;
+      }
+    }
+
+    .movie-details {
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 100%;
+      padding-bottom: 25px;
+
+      h1 {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+    }
+    div {
+      font-size: 12px;
+    }
+    
   }
 }

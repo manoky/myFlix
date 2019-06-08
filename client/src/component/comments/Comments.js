@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import Comment from './comment/Comment';
 import CommentForm from './comment-form/CommentForm';
 import './Comments.scss';
@@ -37,6 +36,13 @@ class Comments extends Component {
       </div>
     );
   }
+}
+
+Comments.propTypes = {
+  comments: PropTypes.array,
+  user: PropTypes.object,
+  movieId: PropTypes.string,
+  sendComment: PropTypes.func,
 }
 
 export default Comments;

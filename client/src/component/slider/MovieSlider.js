@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Slider from "react-slick";
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Slider.scss';
 
 class MovieSlider extends Component {
@@ -34,4 +35,9 @@ class MovieSlider extends Component {
     );
   }
 }
+
+MovieSlider.propTypes = {
+  movies: PropTypes.array,
+}
+
 export default connect(({movies}) => ({movies}))(MovieSlider);

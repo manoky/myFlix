@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
-import './Registration.scss';
 import FormWrap from '../UI/wrapper/FormWrapper';
 import {signUp} from '../../actions/session';
+import './Registration.scss';
 
 
 function Registration({history, signUp}){

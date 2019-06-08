@@ -12,59 +12,124 @@
     padding: 10px;
     margin: 0 20px 0 20px;
     border: 1px solid #E8E8E8;
-  }
 
-  //floating the content of the card component
-  .Inner-Card {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    margin-bottom: 60px;
-  }
-  
 
-  .movie-image {
-    max-width: 300px;
-    box-shadow: 4px 4px 5px rgba(54, 54, 54, 0.171);
-    img {
-      width: 207px;
-      margin-bottom: -4px;
+    //floating the content of the card component
+    .Inner-Card {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      margin-bottom: 60px;
+      
     }
-  }
+    
 
-  .movie-details {
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    background: #fff;
-    box-shadow: 4px 4px 5px rgba(54, 54, 54, 0.171);
-
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      font-weight: 700;
+    .movie-image {
+      max-width: 300px;
+      box-shadow: 4px 4px 5px rgba(54, 54, 54, 0.171);
+      img {
+        width: 207px;
+        margin-bottom: -4px;
+      }
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .genre-direct {
-      span {
-        margin-right: 10px;
+    .movie-details {
+      padding-top: 20px;
+      padding-left: 40px;
+      padding-right: 40px;
+      background: #fff;
+      box-shadow: 4px 4px 5px rgba(54, 54, 54, 0.171);
 
-        a {
-          margin-left: 5px;
-          font-style: italic;
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+      .genre-direct {
+        span {
+          margin-right: 10px;
+
+          a {
+            margin-left: 5px;
+            font-style: italic;
+          }
         }
       }
 
+      div {
+        margin-top: 20px;
+      }
     }
 
-    div {
-      margin-top: 20px;
+    @media all and (max-width: 970px) {
+
+      .movie-details {
+        padding-left: 20px;
+        padding-right: 20px;
+        h1 {
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+      }
+      div {
+        font-size: 12px;
+      }
+      
+    }
+
+    @media all and (max-width: 765px) {
+      margin: 0;
+      padding: 0px;
+
+      .Card {
+        margin: 0;
+
+        embed {
+          height: 300px;
+        }
+      }
+
+      .Inner-Card {
+        display: block;
+      }
+
+      .movie-image {
+        max-width: 100%;
+        display: flex;
+        img {
+          margin-bottom: 0;
+          margin: auto;
+        }
+      }
+
+      .movie-details {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        padding-bottom: 25px;
+        h1 {
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+      }
+      div {
+        font-size: 12px;
+      }
+      
+    }
+  }
+
+  @media all and (max-width: 765px) {
+    .sidebar {
+      display: none;
     }
   }
 }

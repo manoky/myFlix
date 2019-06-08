@@ -69,6 +69,9 @@ const CommentForm = ({activeUser, movieId, postComments, showModal, getComments}
 CommentForm.propTypes = {
   activeUser: PropTypes.object,
   showModal: PropTypes.func,
+  postComments: PropTypes.func,
+  getComments: PropTypes.func,
+  movieId: PropTypes.string,
 }
 
 export default connect(null,{showModal,postComments, getComments})(CommentForm);

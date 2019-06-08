@@ -42,7 +42,6 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hot-loader": "^4.8.8",
-    "react-icons": "^2.2.7",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-scripts": "latest",

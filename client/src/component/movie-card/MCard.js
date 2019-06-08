@@ -12,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderOutlined from '@material-ui/icons/FavoriteBorderOutlined';
-import {getRatings} from '../../actions/comments';
 import {onFavorite, unFavorite} from '../../actions/favorite';
 import './MCard.scss';
 
@@ -55,7 +54,7 @@ const MCard = ({
       }
     }
 	}
-	console.log(1 < movie.rating);
+
 
   return(
     <div className="Card">
@@ -107,8 +106,8 @@ const MCard = ({
 
 Card.propTyoes = {
   movie: PropTypes.object,
-  favorite: PropTypes.func,
-  comments: PropTypes.number,
+  favorites: PropTypes.array,
+  comments: PropTypes.array,
   unFavorite: PropTypes.func,
 	unFavorite: PropTypes.func,
 	user: PropTypes.object,

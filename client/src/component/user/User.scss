@@ -15,6 +15,23 @@
   .User-profile {
     width: 50%;
     margin: auto;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+
+    .username {
+      position: relative;
+      top: -15px;
+      margin-left: 5px;
+      text-transform: capitalize;
+    }
+
+    img {
+      width: 35px;
+    }
+    @media all and (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   .favorite-column{
@@ -27,18 +44,18 @@
 
     .favorite-grid {
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      display: flex;
       gap: 10px;
-      padding: 5px;
-      justify-items: center;
+      padding-left: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
 
       
       .Card {
-        margin: 0;
-        width: 75%;
+        margin-left: 5px;
+       
         .card-grid {
-          width: 100%;
+          width: 210px;
         }
 
         .card-grid-img {
