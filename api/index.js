@@ -39,7 +39,7 @@ const auth = require('../authorization/auth')(router);
 
 router.post('/movies', (req, res) => {
   const { Title, Description, Trailer, Featured,ImagePath,
-            GName, DName, Bio, DoB, PoB
+          GName, DName, Bio, DoB, PoB
         } = req.body;
 
   Movies.findOne({Title: Title})

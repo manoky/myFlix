@@ -11,7 +11,6 @@ import './MovieView.scss'
 class MovieView extends Component {
   state = {
     movie: null,
-    // movieComments: [],
   }
   
   isMovieView = true;
@@ -19,7 +18,6 @@ class MovieView extends Component {
   componentDidMount() {
     const {id} = this.props.match.params;
     this.onGetMovie(id);
-    //this.onGetComments(id);
   }
 
   onGetMovie = (id) => {
@@ -31,37 +29,6 @@ class MovieView extends Component {
     .catch(err => console.log(err));
   }
 
-  // onGetComments =(id)=> {
-  //   axios.get(`/api/v1/comments/${id}`)
-  //   .then(res => {
-  //     const comments =res.data
-  //     this.setState({comments})
-  //   })
-  //   .catch(err => console.log(err))
-  // }
-
-  onComment = (
-                userId,
-                username,
-                movie_id, 
-                rating,
-                comment_body
-               ) =>{
-    axios.post('/api/v1/comments',{
-      userId: userId,
-      username: username,
-      movieId: movie_id,
-      rating: rating,
-      comment: comment_body
-    })
-    .then(res => {
-      this.setState(prevState =>({
-        comments: [...prevState.comments, res.data]
-      }));
-    })
-    .catch(err => console.log(err));
-    
-  }
   
 
   render() {
@@ -69,8 +36,6 @@ class MovieView extends Component {
     const {user, comments} = this.props;
     const m_id = this.props.match.params.id
 
-    console.log(comments)
-    //debugger;
     const filteredComments = comments.filter(comment => comment.movie_id === m_id)
    
     return (

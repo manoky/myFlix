@@ -4,6 +4,7 @@ import favoriteReducer from './favorite';
 import sessionReducer from './session';
 import modalReducer from './modal';
 import ratingReducer from './comments';
+
 export default combineReducers({
   movies: moviesReducer,
   favorites: favoriteReducer,

@@ -9,18 +9,24 @@
     padding: 20px 10px 40px 10px;
     margin: 0 20px 0 20px;
     border: 1px solid #E8E8E8;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
     margin-top: 40px;
+    
+    .Card {
+      margin-left: 17px;;
+    }
+
   }
 
-  .Inner-Card {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
+  // .Inner-Card {
+  //   width: 100%;
+  //   display: flex;
+  //   justify-content: space-around;
+  //   margin-bottom: 20px;
+  // }
   
 
   .movie-image {

@@ -14,7 +14,8 @@ const Card = ({
   onFavorite, 
   favorites,
   unFavorite,
-  comments
+  comments,
+  isMovieView
   }) => {
 
       
@@ -47,7 +48,7 @@ const Card = ({
 
   return(
     <div className="Card">
-      <embed width="100%" height="450" src={movie.Trailer} />
+      {isMovieView ? <embed width="100%" height="450" src={movie.Trailer} />: null}
       <div className="Inner-Card">
         <div className="movie-image">
           <img src={ImagePath} alt={Title}/>
@@ -79,12 +80,22 @@ const Card = ({
                 }
               </span>
           </div>
-          <div>
-            <span>Genre: {movie.Genre.Name}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>Director: {Director.Name}</span>
+          <div className="genre-direct">
+            <span>Genre:
+              <Link to={`/genres/${Genre.Name}`}>
+                {Genre.Name}
+              </Link> 
+            </span>
+            <span>
+              Director:
+              <Link to={`/directors/${Director.Name}`}>
+                {Director.Name}
+              </Link>
+            </span>
           </div>
         </div>
       </div>
+      {!isMovieView ? <embed width="100%" height="450" src={movie.Trailer} />: null}
     </div>
   )
 }

@@ -49,6 +49,18 @@
 
     a {
       text-decoration: none;
+      color: inherit;
+    }
+    .genre-direct {
+      span {
+        margin-right: 10px;
+
+        a {
+          margin-left: 5px;
+          font-style: italic;
+        }
+      }
+
     }
 
     div {

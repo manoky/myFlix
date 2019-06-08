@@ -63,12 +63,17 @@ const MCard = ({
         <Link to={`/movies/${_id}`} className="title">
           <CardActionArea>
             <img src={ImagePath} alt={Title} className="card-grid-img"/>
-            <CardContent>
+            <CardContent className="movie-title">
               <Typography gutterBottom variant="caption" component="h2">
               {Title} 
               </Typography>
             </CardContent>
           </CardActionArea>
+        </Link>
+        <Link to={`/genres/${Genre.Name}`} className="title">
+          <span className="genre">
+            {Genre.Name}
+          </span>
         </Link>
         <CardActions>
           <IconButton size="small" color="primary" onClick={() => user ? toggleFavorite(userId, _id) : null} >
@@ -80,22 +85,20 @@ const MCard = ({
             }
           </IconButton>
           
-						{
-							movie.rating > 1 ?
-							<Button size="small" color="primary">
-							<ReactStars 
-								count={5}
-								size={20}
-								color2={'#ffd700'}
-								edit={false}
-								value={parseFloat(avRating)}
-							/> 
-							 </Button>
-							: null
-						}
-           
-         
-            {Genre.Name}
+          {
+            movie.rating > 1 ?
+            <Button size="small" color="primary">
+            <ReactStars 
+              count={5}
+              size={20}
+              color2={'#ffd700'}
+              edit={false}
+              value={parseFloat(avRating)}
+            /> 
+              </Button>
+            : null
+          }
+          
         </CardActions>
       </Card>
     </div>

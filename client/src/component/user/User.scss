@@ -28,7 +28,7 @@
     .favorite-grid {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
       padding: 5px;
       justify-items: center;
@@ -36,14 +36,13 @@
       
       .Card {
         margin: 0;
-        width: 100%;
+        width: 75%;
         .card-grid {
-          max-width: 100%;
-          height: auto;
+          width: 100%;
         }
 
         .card-grid-img {
-          height: auto;
+          height: 250px;
           width: 100%;
         }
       }

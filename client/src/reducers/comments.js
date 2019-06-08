@@ -8,7 +8,7 @@ const ratingReducer = (state=initialState, action) => {
       return action.data;
 
     case `${types.POSTCOMMENTS}_SUCCESS`:
-      return [...action.data]
+      return [state, ...action.data]
       
     default:
       return state;

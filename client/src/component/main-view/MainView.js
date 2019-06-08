@@ -11,7 +11,10 @@ import fetchMovies from '../../actions/fetchMovies';
 import User from '../user/User';
 import {getComments } from '../../actions/comments';
 import Modal from '../UI/modal/Modal';
+import Genre from '../../genre/Genre';
+import Directors from '../directors/Directors';
 import './MainView.scss'
+
 
 class MainView extends Component {
  
@@ -60,6 +63,8 @@ class MainView extends Component {
                  
               }} 
             />
+            <Route path='/directors/:name' component={Directors} />
+            <Route path='/genres/:name' component={Genre} />
             <Route path='/signup' component={Registration} />
             <Route path='/user' component={User} />
           </Switch>
