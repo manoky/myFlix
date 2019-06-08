@@ -8,7 +8,7 @@ import './Directors.scss';
 const Directors = ({movies, match}) => {
 	const directors = movies.filter(m => m.Director.Name === match.params.name);
 	const directorInfo = directors[0];
-	console.log('Directors',directors)
+
 	return (
 		<div className="Director">
 			<div className='director-info'>
@@ -35,7 +35,7 @@ const Directors = ({movies, match}) => {
 }
 
 Directors.propTypes ={
-	movies: PropTypes.object,
+	movies: PropTypes.array,
 	match: PropTypes.object,
 }
 
