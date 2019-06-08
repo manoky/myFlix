@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import ReactStars from 'react-stars';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { MdFavorite,MdFavoriteBorder } from 'react-icons/lib/md';
+import { MdFavorite,MdFavoriteBorder } from 'react-icons/md';
 import {onFavorite, unFavorite} from '../../actions/favorite';
 
 
