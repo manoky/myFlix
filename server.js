@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const api = require('./api');
+const compression = require('compression');
 
 
 const allowedOrigins = '*';
@@ -27,7 +28,7 @@ if(isDev==='development') {
 
 }
 
-
+app.use(compression());
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(validator());
