@@ -6,6 +6,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 import './Comment.scss';
 
 
@@ -23,7 +24,7 @@ const Comment = ({comment}) => {
           </Avatar>
         }
         title={comment.username}
-        subheader={comment.createdAt}
+        subheader={moment(comment.createdAt).fromNow()}
       />
       <CardContent className="stars-card">
           <ReactStars 

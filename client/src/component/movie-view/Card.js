@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { MdFavorite,MdFavoriteBorder } from 'react-icons/md';
 import {onFavorite, unFavorite} from '../../actions/favorite';
+import {showModal} from '../../actions/modal';
+
 
 
 
@@ -15,7 +17,8 @@ const Card = ({
   favorites,
   unFavorite,
   comments,
-  isMovieView
+  isMovieView,
+  showModal
   }) => {
 
       
@@ -72,7 +75,7 @@ const Card = ({
               }
               
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span className="heart hint--top" onClick={() => user ? toggleFavorite(userId, _id) : null}>
+            <span className="heart hint--top" onClick={() => user ? toggleFavorite(userId, _id) : showModal()}>
                 {
                   favorites.includes(_id) ? 
                   <span className="heart hint--top" aria-label="Remove to favorites">
@@ -112,7 +115,8 @@ Card.propTyoes = {
   onFavorite: PropTypes.func,
   unFavorite: PropTypes.func,
   comments: PropTypes.array,
+  showModal: PropTypes.func,
 }
 
 export default connect(({favorites, user, comments}) => ({favorites, user, comments}),
-                       {onFavorite, unFavorite})(Card);
+                       {onFavorite, unFavorite, showModal})(Card);

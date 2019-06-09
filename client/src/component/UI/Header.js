@@ -22,27 +22,39 @@ const Header = ({ logout, user, resetFavorite }) => {
           {
             user ? 
                   <div> 
-                    <Button color="inherit">
-                      <Link to='/'> Movies</Link>
-                    </Button>
-                    <Button color="inherit" onClick={resetFavorite}>
-                      <Link to='/' onClick={logout}> Log Out</Link>
-                    </Button>
-                    <Button color="inherit">
-                      <Link to='/user'> My Account</Link>
-                    </Button>
+                    <Link to='/'>
+                      <Button color="inherit">
+                        Movies
+                      </Button>
+                    </Link>
+                    <Link to='/' onClick={logout}>
+                      <Button color="inherit" onClick={resetFavorite}>
+                        Log Out
+                      </Button>
+                    </Link>
+                    <Link to='/user'> 
+                      <Button color="inherit">
+                        My Account
+                      </Button>
+                    </Link>
                   </div>
                   :
                   <div>
-                    <Button color="inherit">
-                      <Link to='/'> Movies</Link>
-                    </Button>
-                    <Button color="inherit">
-                      <Link to='/login'>Log In</Link>
-                    </Button>
-                    <Button color="inherit">
-                      <Link to='/signup'>sign Up</Link>
-                    </Button>
+                    <Link to='/'>
+                      <Button color="inherit">
+                        Movies
+                      </Button>
+                    </Link>
+                    <Link to='/login'>
+                      <Button color="inherit">
+                        Log In
+                      </Button>
+                    </Link>
+                    <Link to='/signup'>
+                      <Button color="inherit">
+                        sign Up
+                      </Button>
+                    </Link>
                   </div>
           }
          

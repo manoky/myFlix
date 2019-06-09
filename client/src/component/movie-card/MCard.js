@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderOutlined from '@material-ui/icons/FavoriteBorderOutlined';
 import {onFavorite, unFavorite} from '../../actions/favorite';
+import {showModal} from '../../actions/modal';
 import './MCard.scss';
 
 
@@ -25,6 +26,7 @@ const MCard = ({
   onFavorite, 
   favorites,
   unFavorite,
+  showModal,
   }) => {
 
 
@@ -75,12 +77,12 @@ const MCard = ({
           </span>
         </Link>
         <CardActions>
-          <IconButton size="small" color="primary" onClick={() => user ? toggleFavorite(userId, _id) : null} >
+          <IconButton size="small" color="primary" onClick={() => user ? toggleFavorite(userId, _id) : showModal()} >
             {
               favorites.includes(_id) ? 
                 <FavoriteIcon className="heart" />
                 : 
-                <FavoriteBorderOutlined className="heart"/> 
+                <FavoriteBorderOutlined className="heart" /> 
             }
           </IconButton>
           
@@ -110,8 +112,9 @@ Card.propTyoes = {
   comments: PropTypes.array,
   unFavorite: PropTypes.func,
 	unFavorite: PropTypes.func,
-	user: PropTypes.object,
+  user: PropTypes.object,
+  showModal: PropTypes.func,
 }
 
 export default connect(({favorites, user, comments}) => ({favorites, user, comments}),
-                       {onFavorite, unFavorite})(MCard);
+                       {onFavorite, unFavorite, showModal})(MCard);

@@ -7,11 +7,11 @@ import './Modal.scss';
 
 
 const Modal = ({modal, hideModal}) => {
-
+  const modalView = true;
   // const [visible, setVisible]= useState(modal);
   // console.log(visible)
   const modalStatus = (e) => {
-    if(e.target.className ==="Modal") {
+    if(e.target.className ==="Modal" || e.target.className ==="log-reg-form") {
       hideModal();
     }
     console.log('Modal',modal )
@@ -24,7 +24,7 @@ const Modal = ({modal, hideModal}) => {
       style={{display: modal ? 'flex' : 'none'}}
     >
       <div className="Modal-Centered">
-        <Login />
+        <Login modal={modalView} />
       </div>
     </div>
   )
