@@ -54,7 +54,3 @@ a {
   border-radius: 50%;
   cursor: pointer;
 }
-
-.heart:hover {
-  background: red;
-}
