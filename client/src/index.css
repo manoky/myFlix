@@ -55,3 +55,6 @@ a {
   cursor: pointer;
 }
 
+.heart:hover {
+  background: red;
+}
