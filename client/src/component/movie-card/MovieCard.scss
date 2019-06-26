@@ -46,4 +46,11 @@
       justify-content: center;
     }
   }
+
+  @media all and (max-width: 768px) {
+   
+    .Movie-List {
+      border: none;
+    }
+  }
 }

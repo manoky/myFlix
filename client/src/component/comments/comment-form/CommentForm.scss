@@ -20,4 +20,15 @@
     }
   }
   
+  @media all and (max-width: 600px) {
+    width: 100%;
+
+    .form-body {
+      width: 100%;
+
+      textarea {
+        width: 100%;
+      }
+    }
+  }
 }
