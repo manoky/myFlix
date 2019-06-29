@@ -3,6 +3,9 @@
 
   .card-grid {
     width: 210px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
 
     .movie-title {
       padding: 5px 10px;
@@ -21,11 +24,16 @@
       text-decoration: none;
       color: inherit;
     }
+
+    .genre-fav-rate {
+      margin-top: auto;
+    }
   
     .genre {
       font-size: 12px;
       font-style: italic;
       margin-left: 15px;
+      
     }
   }
 

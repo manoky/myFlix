@@ -31,7 +31,7 @@ const MCard = ({
 
 
   const {_id,Title,Genre, ImagePath} = movie
-
+  const titleFormatted = Title.slice(0,25) + (Title.length > 25 ? "..." : "");
   
   let userId = null;
   user !== null ? userId = user._id : null;
@@ -66,7 +66,7 @@ const MCard = ({
             <img src={ImagePath} alt={Title} className="card-grid-img"/>
             <CardContent className="movie-title">
               <Typography gutterBottom variant="caption" component="h2">
-              {Title} 
+              {titleFormatted}
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -88,7 +88,6 @@ const MCard = ({
           
           {
             movie.rating > 1 ?
-            <Button size="small" color="primary">
             <ReactStars 
               count={5}
               size={20}
@@ -96,7 +95,6 @@ const MCard = ({
               edit={false}
               value={parseFloat(avRating)}
             /> 
-              </Button>
             : null
           }
           
