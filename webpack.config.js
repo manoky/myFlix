@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlWebpackplugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: [
     'webpack-hot-middleware/client?reload=true',
     './client/src/index.js',
